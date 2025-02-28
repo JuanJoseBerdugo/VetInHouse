@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda tu Cita - VetInHouse</title>
+    <link rel="stylesheet" href="cita.css">
+</head>
+<body>
+
+    <!-- Contenedor del video de fondo -->
+    <div class="video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="https://cdn.pixabay.com/video/2023/06/22/168345-838892846_large.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+    </div>
+
+    <!-- Contenedor del formulario -->
+    <div class="form-container">
+        <h1>Agenda tu Cita Veterinaria</h1>
+        <form id="citaForm">
+            <fieldset>
+                <legend>Datos del Dueño</legend>
+                <label for="nombreDueño">Nombre Completo:</label>
+                <input type="text" id="nombreDueño" name="nombreDueño" required>
+                
+                <label for="telefonoDueño">Teléfono:</label>
+                <input type="tel" id="telefonoDueño" name="telefonoDueño" required>
+                
+                <label for="emailDueño">Correo Electrónico:</label>
+                <input type="email" id="emailDueño" name="emailDueño" required>
+            </fieldset>
+            
+            <fieldset>
+                <legend>Datos de la Mascota</legend>
+                <label for="nombreMascota">Nombre de la Mascota:</label>
+                <input type="text" id="nombreMascota" name="nombreMascota" required>
+                
+                <label for="tipoMascota">Tipo de Mascota:</label>
+                <input type="text" id="tipoMascota" name="tipoMascota" required>
+                
+                <label for="razaMascota">Raza:</label>
+                <input type="text" id="razaMascota" name="razaMascota" required>
+                
+                <label for="edadMascota">Edad En Meses:</label>
+                <input type="number" id="edadMascota" name="edadMascota" required>
+                
+                <label for="sintomasMascota">Síntomas o Motivo de la Cita:</label>
+                <textarea id="sintomasMascota" name="sintomasMascota" required></textarea>
+            </fieldset>
+            
+            <button type="submit">Enviar</button>
+        </form>
+
+        <a href="home.html" class="volver-btn">Volver</a>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="cita.js"></script>
+</body>
+</html>
