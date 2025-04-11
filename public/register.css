@@ -1,0 +1,427 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Contenedor del video */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -2;
+}
+
+.background-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+/* Partículas */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+/* Contenedor del registro */
+.register-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    width: 450px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.register-container:hover {
+    transform: translate(-50%, -52%);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Logo y título */
+.logo-container {
+    margin-bottom: 30px;
+}
+
+.logo-icon {
+    font-size: 3em;
+    color: #4CAF50;
+    margin-bottom: 10px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.register-container h1 {
+    font-size: 2em;
+    color: #fff;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.register-container h2 {
+    margin-bottom: 30px;
+    font-size: 1.5em;
+    color: #fff;
+}
+
+/* Grupos de input */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #4CAF50;
+    font-size: 1.2em;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 15px 45px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 30px;
+    color: white;
+    font-size: 1em;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+}
+
+.input-group input::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #4CAF50;
+    transition: all 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: #45a049;
+}
+
+/* Indicador de fuerza de contraseña */
+.password-strength-container {
+    margin-bottom: 20px;
+}
+
+.password-strength-meter {
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.password-strength-text {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Requisitos de contraseña */
+.password-requirements {
+    text-align: left;
+    margin-bottom: 25px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.password-requirements p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.password-requirements ul {
+    list-style-type: none;
+}
+
+.password-requirements li {
+    margin-bottom: 5px;
+    font-size: 0.85em;
+    display: flex;
+    align-items: center;
+}
+
+.password-requirements li i {
+    margin-right: 8px;
+    font-size: 0.9em;
+}
+
+.fa-times-circle {
+    color: #ff6b6b;
+}
+
+.fa-check-circle {
+    color: #4CAF50;
+}
+
+/* Botón */
+.register-container button {
+    width: 100%;
+    padding: 15px;
+    background: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    opacity: 0.7;
+}
+
+.register-container button:enabled {
+    opacity: 1;
+}
+
+.register-container button:enabled:hover {
+    background: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
+}
+
+.register-container button:enabled:active {
+    transform: translateY(0);
+}
+
+.register-container button i {
+    font-size: 1.2em;
+}
+
+/* Enlaces */
+.additional-links {
+    margin-top: 20px;
+}
+
+.register-container a {
+    color: #4CAF50;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.register-container a:hover {
+    color: #45a049;
+    text-decoration: underline;
+}
+
+/* Mensaje de error */
+#registerMessage {
+    margin-top: 15px;
+    color: #ff6b6b;
+    font-size: 0.9em;
+}
+
+/* Huellas animadas */
+.paw-prints {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.paw-prints i {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.1);
+    animation: floating 20s linear infinite;
+}
+
+.paw-prints i:nth-child(1) {
+    left: 10%;
+    font-size: 20px;
+    animation-delay: 0s;
+}
+
+.paw-prints i:nth-child(2) {
+    left: 40%;
+    font-size: 25px;
+    animation-delay: 5s;
+}
+
+.paw-prints i:nth-child(3) {
+    left: 70%;
+    font-size: 30px;
+    animation-delay: 10s;
+}
+
+@keyframes floating {
+    0% {
+        top: -10%;
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        top: 110%;
+        transform: translateX(100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* Burbujas flotantes */
+.bubbles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.bubble {
+    position: absolute;
+    bottom: -100px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: rise 15s infinite ease-in;
+}
+
+.bubble:nth-child(1) {
+    width: 40px;
+    height: 40px;
+    left: 10%;
+    animation-duration: 8s;
+}
+
+.bubble:nth-child(2) {
+    width: 20px;
+    height: 20px;
+    left: 20%;
+    animation-duration: 5s;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(3) {
+    width: 50px;
+    height: 50px;
+    left: 35%;
+    animation-duration: 7s;
+    animation-delay: 2s;
+}
+
+.bubble:nth-child(4) {
+    width: 80px;
+    height: 80px;
+    left: 50%;
+    animation-duration: 11s;
+    animation-delay: 0s;
+}
+
+.bubble:nth-child(5) {
+    width: 35px;
+    height: 35px;
+    left: 55%;
+    animation-duration: 6s;
+    animation-delay: 1s;
+}
+
+.bubble:nth-child(6) {
+    width: 45px;
+    height: 45px;
+    left: 65%;
+    animation-duration: 8s;
+    animation-delay: 3s;
+}
+
+@keyframes rise {
+    0% {
+        bottom: -100px;
+        transform: translateX(0);
+    }
+    50% {
+        transform: translate(100px);
+    }
+    100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .register-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .register-container h1 {
+        font-size: 1.5em;
+    }
+
+    .register-container h2 {
+        font-size: 1.2em;
+    }
+
+    .input-group input {
+        padding: 12px 40px;
+    }
+}

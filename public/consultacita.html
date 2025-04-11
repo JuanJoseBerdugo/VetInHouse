@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Citas - VetInHouse</title>
+    <link rel="stylesheet" href="consultacita.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <i class="fas fa-paw loader-icon"></i>
+            <p>Cargando tus citas...</p>
+        </div>
+    </div>
+
+    <!-- Contenedor del video de fondo -->
+    <div class="video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="https://cdn.pixabay.com/video/2021/05/22/74846-553838464_large.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Elementos decorativos flotantes -->
+    <div class="floating-elements">
+        <i class="fas fa-calendar-check"></i>
+        <i class="fas fa-clock"></i>
+        <i class="fas fa-paw"></i>
+        <i class="fas fa-stethoscope"></i>
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <!-- Header con logo -->
+    <header class="animate__animated animate__fadeInDown">
+        <div class="logo">
+            <i class="fas fa-clinic-medical"></i>
+            <span>VetInHouse</span>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="container animate__animated animate__fadeIn">
+            <h1 class="title">
+                <i class="fas fa-calendar-alt"></i>
+                Mis Citas Veterinarias
+            </h1>
+            
+            <!-- Tabs de navegación -->
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="search">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+                <button class="tab-btn" data-tab="upcoming">
+                    <i class="fas fa-calendar-day"></i> Próximas
+                </button>
+                <button class="tab-btn" data-tab="past">
+                    <i class="fas fa-history"></i> Historial
+                </button>
+            </div>
+            
+            <!-- Contenido de las tabs -->
+            <div class="tab-content">
+                <!-- Tab de búsqueda -->
+                <div class="tab-pane active" id="search-tab">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Busca por tu nombre o el de tu mascota">
+                            <button id="searchBtn" class="search-btn">Buscar</button>
+                        </div>
+                    </div>
+                    
+                    <div class="result-stats" id="resultStats"></div>
+                    
+                    <div class="result-container" id="resultContainer">
+                        <div class="empty-state">
+                            <i class="fas fa-search empty-icon"></i>
+                            <p>Ingresa tu nombre o el de tu mascota para buscar tus citas</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab de próximas citas -->
+                <div class="tab-pane" id="upcoming-tab">
+                    <div class="calendar-header">
+                        <h3><i class="fas fa-calendar-day"></i> Próximas Citas</h3>
+                    </div>
+                    
+                    <div class="result-container" id="upcomingContainer">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Cargando tus próximas citas...</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Tab de historial -->
+                <div class="tab-pane" id="past-tab">
+                    <div class="calendar-header">
+                        <h3><i class="fas fa-history"></i> Historial de Citas</h3>
+                    </div>
+                    
+                    <div class="result-container" id="pastContainer">
+                        <div class="loading">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Cargando tu historial de citas...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botones de acción -->
+            <div class="action-buttons">
+                <a href="cita.html" class="action-btn new-btn">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Nueva Cita</span>
+                </a>
+                <a href="home.html" class="action-btn back-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Volver al Inicio</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Plantilla para tarjetas de cita (se clonará con JS) -->
+    <template id="cita-template">
+        <div class="cita-card">
+            <div class="cita-header">
+                <div class="cita-icon">
+                    <i class="fas fa-paw"></i>
+                </div>
+                <div class="cita-title">
+                    <h3 class="mascota-nombre"></h3>
+                    <span class="cita-tipo"></span>
+                </div>
+                <div class="cita-status">
+                    <span class="status-badge"></span>
+                </div>
+            </div>
+            
+            <div class="cita-body">
+                <div class="cita-info">
+                    <div class="info-item">
+                        <i class="fas fa-user"></i>
+                        <span class="dueno-nombre"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <span class="cita-fecha"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span class="cita-hora"></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-stethoscope"></i>
+                        <span class="cita-servicio"></span>
+                    </div>
+                </div>
+                
+                <div class="cita-details">
+                    <div class="details-header">
+                        <h4>Detalles de la Mascota</h4>
+                        <button class="toggle-details">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="details-content">
+                        <div class="details-item">
+                            <span class="details-label">Tipo:</span>
+                            <span class="mascota-tipo"></span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Raza:</span>
+                            <span class="mascota-raza"></span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Edad:</span>
+                            <span class="mascota-edad"></span>
+                        </div>
+                        <div class="details-item">
+                            <span class="details-label">Género:</span>
+                            <span class="mascota-genero"></span>
+                        </div>
+                        <div class="details-item full-width">
+                            <span class="details-label">Síntomas:</span>
+                            <p class="mascota-sintomas"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="cita-footer">
+                <button class="cita-btn edit-btn">
+                    <i class="fas fa-edit"></i>
+                    <span>Editar</span>
+                </button>
+                <button class="cita-btn cancel-btn">
+                    <i class="fas fa-times-circle"></i>
+                    <span>Cancelar</span>
+                </button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Notificación -->
+    <div class="notification" id="notification">
+        <div class="notification-icon">
+            <i class="fas fa-info-circle"></i>
+        </div>
+        <div class="notification-content">
+            <h3 id="notification-title">Título</h3>
+            <p id="notification-message">Mensaje</p>
+        </div>
+        <button class="notification-close">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="consultacita.js"></script>
+</body>
+</html>

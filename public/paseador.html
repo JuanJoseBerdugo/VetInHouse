@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conviértete en Paseador - VetInHouse</title>
+    <link rel="stylesheet" href="paseador.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="dog-walker">
+                <i class="fas fa-walking"></i>
+                <i class="fas fa-dog"></i>
+            </div>
+            <p>Cargando...</p>
+        </div>
+    </div>
+
+    <!-- Contenedor del video de fondo -->
+    <div class="video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="https://cdn.pixabay.com/video/2022/10/07/133963-758543824_large.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <!-- Elementos decorativos flotantes -->
+    <div class="floating-elements">
+        <i class="fas fa-paw"></i>
+        <i class="fas fa-bone"></i>
+        <i class="fas fa-dog"></i>
+        <i class="fas fa-walking"></i>
+        <i class="fas fa-heart"></i>
+    </div>
+
+    <!-- Header con logo -->
+    <header class="animate__animated animate__fadeInDown">
+        <div class="logo">
+            <i class="fas fa-dog"></i>
+            <span>VetInHouse</span>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="main-container">
+        <!-- Contenedor del formulario -->
+        <div class="form-container animate__animated animate__fadeIn">
+            <h1 class="title">
+                <span class="title-icon"><i class="fas fa-user-plus"></i></span>
+                Únete a Nuestro Equipo de Paseadores
+            </h1>
+            
+            <!-- Indicador de progreso -->
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress" id="formProgress"></div>
+                </div>
+                <div class="progress-steps">
+                    <div class="step active" data-step="1">
+                        <div class="step-icon"><i class="fas fa-user"></i></div>
+                        <span>Personal</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-icon"><i class="fas fa-briefcase"></i></div>
+                        <span>Experiencia</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-icon"><i class="fas fa-dog"></i></div>
+                        <span>Habilidades</span>
+                    </div>
+                    <div class="step" data-step="4">
+                        <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                        <span>Finalizar</span>
+                    </div>
+                </div>
+            </div>
+            
+            <form id="paseadorForm">
+                <!-- Paso 1: Datos Personales -->
+                <div class="form-step active" id="step1">
+                    <h2 class="step-title">Información Personal</h2>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" id="nombre" name="nombre" required>
+                            <label for="nombre">Nombre Completo</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" id="documento" name="documento" required>
+                            <label for="documento">Número de Documento</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-birthday-cake"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                            <label for="fechaNacimiento" class="date-label">Fecha de Nacimiento</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="tel" id="telefono" name="telefono" required>
+                            <label for="telefono">Teléfono</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Correo Electrónico</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="text" id="direccion" name="direccion" required>
+                            <label for="direccion">Dirección</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn next-btn" id="toStep2">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Paso 2: Experiencia -->
+                <div class="form-step" id="step2">
+                    <h2 class="step-title">Experiencia y Formación</h2>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="number" id="experiencia" name="experiencia" min="0" required>
+                            <label for="experiencia">Años de Experiencia Paseando Perros</label>
+                        </div>
+                    </div>
+                    
+                    <div class="select-group">
+                        <div class="input-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="select-container">
+                            <select id="nivelEducativo" name="nivelEducativo" required>
+                                <option value="" disabled selected>Selecciona tu nivel educativo</option>
+                                <option value="Primaria">Primaria</option>
+                                <option value="Secundaria">Secundaria</option>
+                                <option value="Técnico">Técnico</option>
+                                <option value="Universitario">Universitario</option>
+                                <option value="Postgrado">Postgrado</option>
+                            </select>
+                            <label for="nivelEducativo">Nivel Educativo</label>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <p class="checkbox-title">Certificaciones (selecciona las que tengas)</p>
+                        <div class="checkbox-options">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="certPrimerosAuxilios" name="certificaciones" value="Primeros Auxilios">
+                                <label for="certPrimerosAuxilios">Primeros Auxilios para Mascotas</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="certAdiestramiento" name="certificaciones" value="Adiestramiento">
+                                <label for="certAdiestramiento">Adiestramiento Canino</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="certComportamiento" name="certificaciones" value="Comportamiento">
+                                <label for="certComportamiento">Comportamiento Animal</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="certCuidadoMascotas" name="certificaciones" value="Cuidado">
+                                <label for="certCuidadoMascotas">Cuidado de Mascotas</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group textarea-group">
+                        <div class="input-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="input-container">
+                            <textarea id="experienciaPrevia" name="experienciaPrevia" required></textarea>
+                            <label for="experienciaPrevia">Describe tu experiencia previa con mascotas</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn back-btn" id="backToStep1"><i class="fas fa-arrow-left"></i> Atrás</button>
+                        <button type="button" class="btn next-btn" id="toStep3">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Paso 3: Habilidades -->
+                <div class="form-step" id="step3">
+                    <h2 class="step-title">Habilidades y Preferencias</h2>
+                    
+                    <div class="range-group">
+                        <label for="tamanoPerros" class="range-label">¿Qué tamaño de perros prefieres pasear?</label>
+                        <div class="range-options">
+                            <div class="range-option">
+                                <input type="checkbox" id="tamanoSmall" name="tamanoPerros" value="Pequeños">
+                                <label for="tamanoSmall">
+                                    <i class="fas fa-dog"></i>
+                                    <span>Pequeños</span>
+                                </label>
+                            </div>
+                            <div class="range-option">
+                                <input type="checkbox" id="tamanoMedium" name="tamanoPerros" value="Medianos">
+                                <label for="tamanoMedium">
+                                    <i class="fas fa-dog"></i>
+                                    <span>Medianos</span>
+                                </label>
+                            </div>
+                            <div class="range-option">
+                                <input type="checkbox" id="tamanoLarge" name="tamanoPerros" value="Grandes">
+                                <label for="tamanoLarge">
+                                    <i class="fas fa-dog"></i>
+                                    <span>Grandes</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group">
+                        <div class="input-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="input-container">
+                            <input type="number" id="horasDisponibles" name="horasDisponibles" min="1" max="12" required>
+                            <label for="horasDisponibles">Horas disponibles por día</label>
+                        </div>
+                    </div>
+                    
+                    <div class="select-group">
+                        <div class="input-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div class="select-container">
+                            <select id="diasDisponibles" name="diasDisponibles" required>
+                                <option value="" disabled selected>Selecciona tu disponibilidad</option>
+                                <option value="Lunes a Viernes">Lunes a Viernes</option>
+                                <option value="Fines de Semana">Fines de Semana</option>
+                                <option value="Todos los días">Todos los días</option>
+                                <option value="Días específicos">Días específicos</option>
+                            </select>
+                            <label for="diasDisponibles">Días disponibles</label>
+                        </div>
+                    </div>
+                    
+                    <div id="diasEspecificosContainer" class="checkbox-group" style="display: none;">
+                        <p class="checkbox-title">Selecciona los días disponibles</p>
+                        <div class="checkbox-options days-options">
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaLunes" name="diasEspecificos" value="Lunes">
+                                <label for="diaLunes">Lunes</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaMartes" name="diasEspecificos" value="Martes">
+                                <label for="diaMartes">Martes</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaMiercoles" name="diasEspecificos" value="Miércoles">
+                                <label for="diaMiercoles">Miércoles</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaJueves" name="diasEspecificos" value="Jueves">
+                                <label for="diaJueves">Jueves</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaViernes" name="diasEspecificos" value="Viernes">
+                                <label for="diaViernes">Viernes</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaSabado" name="diasEspecificos" value="Sábado">
+                                <label for="diaSabado">Sábado</label>
+                            </div>
+                            <div class="checkbox-option">
+                                <input type="checkbox" id="diaDomingo" name="diasEspecificos" value="Domingo">
+                                <label for="diaDomingo">Domingo</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="radio-group">
+                        <p class="radio-title">¿Tienes transporte propio?</p>
+                        <div class="radio-options">
+                            <div class="radio-option">
+                                <input type="radio" id="transporteSi" name="transporte" value="Sí" required>
+                                <label for="transporteSi">Sí</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="transporteNo" name="transporte" value="No">
+                                <label for="transporteNo">No</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group textarea-group">
+                        <div class="input-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="input-container">
+                            <textarea id="habilidadesEspeciales" name="habilidadesEspeciales" required></textarea>
+                            <label for="habilidadesEspeciales">¿Tienes alguna habilidad especial con los perros?</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn back-btn" id="backToStep2"><i class="fas fa-arrow-left"></i> Atrás</button>
+                        <button type="button" class="btn next-btn" id="toStep4">Siguiente <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                
+                <!-- Paso 4: Finalizar -->
+                <div class="form-step" id="step4">
+                    <h2 class="step-title">Finalizar Solicitud</h2>
+                    
+                    <div class="input-group textarea-group">
+                        <div class="input-icon">
+                            <i class="fas fa-question-circle"></i>
+                        </div>
+                        <div class="input-container">
+                            <textarea id="porque" name="porque" required></textarea>
+                            <label for="porque">¿Por qué quieres ser paseador en VetInHouse?</label>
+                        </div>
+                    </div>
+                    
+                    <div class="input-group textarea-group">
+                        <div class="input-icon">
+                            <i class="fas fa-comment-dots"></i>
+                        </div>
+                        <div class="input-container">
+                            <textarea id="comentariosAdicionales" name="comentariosAdicionales"></textarea>
+                            <label for="comentariosAdicionales">Comentarios adicionales (opcional)</label>
+                        </div>
+                    </div>
+                    
+                    <div class="range-group">
+                        <label for="tarifaHora" class="range-label">¿Cuál es tu tarifa por hora? (en pesos)</label>
+                        <div class="range-slider">
+                            <input type="range" id="tarifaHora" name="tarifaHora" min="10000" max="50000" step="1000" value="25000">
+                            <div class="range-value" id="tarifaValue">$25,000</div>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group terms-group">
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="terminosCondiciones" name="terminosCondiciones" required>
+                            <label for="terminosCondiciones">Acepto los términos y condiciones de VetInHouse</label>
+                        </div>
+                        <div class="checkbox-option">
+                            <input type="checkbox" id="politicaPrivacidad" name="politicaPrivacidad" required>
+                            <label for="politicaPrivacidad">Acepto la política de privacidad y tratamiento de datos</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-buttons">
+                        <button type="button" class="btn back-btn" id="backToStep3"><i class="fas fa-arrow-left"></i> Atrás</button>
+                        <button type="submit" class="btn submit-btn">
+                            <span>Enviar Solicitud</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            
+            <div class="form-footer">
+                <a href="home.html" class="volver-btn">
+                    <i class="fas fa-home"></i>
+                    <span>Volver al Inicio</span>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Notificación de éxito -->
+    <div class="notification" id="successNotification">
+        <div class="notification-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="notification-content">
+            <h3>¡Solicitud Enviada!</h3>
+            <p>Hemos recibido tu solicitud para ser paseador. Te contactaremos pronto.</p>
+        </div>
+        <div class="notification-progress">
+            <div class="notification-progress-bar"></div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="paseador.js"></script>
+</body>
+</html>

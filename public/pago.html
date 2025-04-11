@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pasarela de Pago - VetInHouse</title>
+    <link rel="stylesheet" href="pago.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="payment-icon">
+                <i class="fas fa-credit-card"></i>
+                <i class="fas fa-lock"></i>
+            </div>
+            <p>Conectando con el sistema de pago...</p>
+        </div>
+    </div>
+
+    <!-- Header con logo -->
+    <header class="animate__animated animate__fadeInDown">
+        <div class="logo">
+            <i class="fas fa-paw"></i>
+            <span>VetInHouse</span>
+        </div>
+        <div class="secure-badge">
+            <i class="fas fa-shield-alt"></i>
+            <span>Pago Seguro</span>
+        </div>
+    </header>
+
+    <!-- Contenedor principal -->
+    <main class="main-container">
+        <!-- Pasos del proceso de pago -->
+        <div class="payment-steps">
+            <div class="step active" id="step1">
+                <div class="step-number">1</div>
+                <div class="step-text">Resumen</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="step2">
+                <div class="step-number">2</div>
+                <div class="step-text">Pago</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="step3">
+                <div class="step-number">3</div>
+                <div class="step-text">Confirmación</div>
+            </div>
+        </div>
+
+        <!-- Contenedor de las vistas -->
+        <div class="payment-views">
+            <!-- Vista 1: Resumen de compra -->
+            <div class="payment-view active" id="view1">
+                <div class="view-header">
+                    <h2>Resumen de tu compra</h2>
+                    <p class="subtitle">Revisa los detalles antes de continuar</p>
+                </div>
+
+                <div class="order-summary">
+                    <div class="order-item">
+                        <div class="item-image">
+                            <i class="fas fa-syringe"></i>
+                        </div>
+                        <div class="item-details">
+                            <h3>Consulta Veterinaria</h3>
+                            <p>Consulta general + examen físico</p>
+                        </div>
+                        <div class="item-price">$80,000</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="item-image">
+                            <i class="fas fa-pills"></i>
+                        </div>
+                        <div class="item-details">
+                            <h3>Medicamentos</h3>
+                            <p>Tratamiento prescrito</p>
+                        </div>
+                        <div class="item-price">$45,000</div>
+                    </div>
+                    <div class="order-item">
+                        <div class="item-image">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="item-details">
+                            <h3>Servicio a domicilio</h3>
+                            <p>Tarifa de desplazamiento</p>
+                        </div>
+                        <div class="item-price">$25,000</div>
+                    </div>
+
+                    <div class="order-total">
+                        <div class="total-row">
+                            <span>Subtotal:</span>
+                            <span>$150,000</span>
+                        </div>
+                        <div class="total-row">
+                            <span>IVA (19%):</span>
+                            <span>$28,500</span>
+                        </div>
+                        <div class="total-row highlight">
+                            <span>Total a pagar:</span>
+                            <span>$178,500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="customer-info">
+                    <h3>Información del cliente</h3>
+                    <div class="info-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="nombre">Nombre completo</label>
+                                <input type="text" id="nombre" value="Carlos Andrés Pérez" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="documento">Documento de identidad</label>
+                                <input type="text" id="documento" value="1020345678" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="email">Correo electrónico</label>
+                                <input type="email" id="email" value="carlos.perez@gmail.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Teléfono</label>
+                                <input type="tel" id="telefono" value="3157894562" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group full-width">
+                                <label for="direccion">Dirección</label>
+                                <input type="text" id="direccion" value="Calle 45 #23-67, Apto 502, Bogotá" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="view-actions">
+                    <a href="home.html" class="btn btn-outline">Cancelar</a>
+                    <button class="btn btn-primary" id="toPaymentBtn">Continuar al pago</button>
+                </div>
+            </div>
+
+            <!-- Vista 2: Método de pago -->
+            <div class="payment-view" id="view2">
+                <div class="view-header">
+                    <h2>Método de pago</h2>
+                    <p class="subtitle">Selecciona tu método de pago preferido</p>
+                </div>
+
+                <div class="payment-methods">
+                    <div class="payment-tabs">
+                        <div class="tab active" data-tab="credit-card">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Tarjeta de crédito</span>
+                        </div>
+                        <div class="tab" data-tab="pse">
+                            <i class="fas fa-university"></i>
+                            <span>PSE</span>
+                        </div>
+                        <div class="tab" data-tab="nequi">
+                            <i class="fas fa-mobile-alt"></i>
+                            <span>Nequi</span>
+                        </div>
+                    </div>
+
+                    <div class="payment-content">
+                        <!-- Tarjeta de crédito -->
+                        <div class="tab-content active" id="credit-card">
+                            <div class="card-container">
+                                <div class="card-wrapper" id="cardWrapper">
+                                    <div class="card-front">
+                                        <div class="card-header">
+                                            <div class="card-logo">
+                                                <span id="cardBrand">VISA</span>
+                                            </div>
+                                            <div class="card-chip">
+                                                <i class="fas fa-microchip"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card-number" id="cardNumberDisplay">•••• •••• •••• ••••</div>
+                                        <div class="card-details">
+                                            <div class="card-holder">
+                                                <span class="label">Titular</span>
+                                                <span class="value" id="cardHolderDisplay">NOMBRE DEL TITULAR</span>
+                                            </div>
+                                            <div class="card-expires">
+                                                <span class="label">Expira</span>
+                                                <span class="value" id="cardExpiryDisplay">MM/AA</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-back">
+                                        <div class="card-stripe"></div>
+                                        <div class="card-signature">
+                                            <div class="signature-line"></div>
+                                            <div class="cvv-box" id="cvvDisplay">•••</div>
+                                        </div>
+                                        <div class="card-info">
+                                            <p>Esta tarjeta es propiedad del banco emisor.</p>
+                                            <p>El uso de esta tarjeta está sujeto a los términos y condiciones del acuerdo con el titular.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form id="creditCardForm" class="payment-form">
+                                <div class="form-row">
+                                    <div class="form-group full-width">
+                                        <label for="cardNumber">Número de tarjeta</label>
+                                        <div class="input-icon">
+                                            <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group full-width">
+                                        <label for="cardHolder">Nombre del titular</label>
+                                        <div class="input-icon">
+                                            <input type="text" id="cardHolder" placeholder="Como aparece en la tarjeta" required>
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="cardExpiry">Fecha de expiración</label>
+                                        <div class="input-icon">
+                                            <input type="text" id="cardExpiry" placeholder="MM/AA" maxlength="5" required>
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardCvv">Código de seguridad</label>
+                                        <div class="input-icon">
+                                            <input type="text" id="cardCvv" placeholder="CVV" maxlength="3" required>
+                                            <i class="fas fa-lock"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="cardType">Tipo de tarjeta</label>
+                                        <select id="cardType" required>
+                                            <option value="visa">Visa</option>
+                                            <option value="mastercard">Mastercard</option>
+                                            <option value="american">American Express</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="cardInstallments">Cuotas</label>
+                                        <select id="cardInstallments" required>
+                                            <option value="1">1 cuota</option>
+                                            <option value="3">3 cuotas</option>
+                                            <option value="6">6 cuotas</option>
+                                            <option value="12">12 cuotas</option>
+                                            <option value="24">24 cuotas</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- PSE -->
+                        <div class="tab-content" id="pse">
+                            <div class="pse-container">
+                                <div class="pse-logo">
+                                    <img src="https://www.pse.com.co/documents/20124/0/logo-pse.svg/c0a5c0f1-c5b3-a766-be8d-1e4e3c8a46bf?t=1628532876064" alt="PSE Logo">
+                                </div>
+                                <form id="pseForm" class="payment-form">
+                                    <div class="form-row">
+                                        <div class="form-group full-width">
+                                            <label for="pseBank">Selecciona tu banco</label>
+                                            <select id="pseBank" required>
+                                                <option value="" disabled selected>Selecciona un banco</option>
+                                                <option value="bancolombia">Bancolombia</option>
+                                                <option value="davivienda">Davivienda</option>
+                                                <option value="bbva">BBVA</option>
+                                                <option value="bogota">Banco de Bogotá</option>
+                                                <option value="popular">Banco Popular</option>
+                                                <option value="occidente">Banco de Occidente</option>
+                                                <option value="avvillas">AV Villas</option>
+                                                <option value="colpatria">Scotiabank Colpatria</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label for="pseDocType">Tipo de documento</label>
+                                            <select id="pseDocType" required>
+                                                <option value="cc">Cédula de Ciudadanía</option>
+                                                <option value="ce">Cédula de Extranjería</option>
+                                                <option value="nit">NIT</option>
+                                                <option value="pp">Pasaporte</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="pseDocNumber">Número de documento</label>
+                                            <input type="text" id="pseDocNumber" placeholder="Número de documento" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group full-width">
+                                            <label for="pseAccountType">Tipo de cuenta</label>
+                                            <select id="pseAccountType" required>
+                                                <option value="ahorros">Cuenta de Ahorros</option>
+                                                <option value="corriente">Cuenta Corriente</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="pse-info">
+                                    <p>Al hacer clic en "Pagar ahora", serás redirigido a la página de tu banco para completar el pago.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Nequi -->
+                        <div class="tab-content" id="nequi">
+                            <div class="nequi-container">
+                                <div class="nequi-logo">
+                                    <img src="https://www.nequi.com.co/wp-content/uploads/2020/08/logo-nequi.png" alt="Nequi Logo">
+                                </div>
+                                <form id="nequiForm" class="payment-form">
+                                    <div class="form-row">
+                                        <div class="form-group full-width">
+                                            <label for="nequiPhone">Número de celular</label>
+                                            <div class="input-icon">
+                                                <input type="tel" id="nequiPhone" placeholder="300 123 4567" required>
+                                                <i class="fas fa-mobile-alt"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="nequi-info">
+                                    <p>Recibirás una notificación en tu app de Nequi para confirmar el pago.</p>
+                                    <div class="nequi-steps">
+                                        <div class="nequi-step">
+                                            <div class="step-icon">1</div>
+                                            <p>Ingresa tu número</p>
+                                        </div>
+                                        <div class="nequi-step">
+                                            <div class="step-icon">2</div>
+                                            <p>Recibe notificación</p>
+                                        </div>
+                                        <div class="nequi-step">
+                                            <div class="step-icon">3</div>
+                                            <p>Confirma en la app</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-summary">
+                    <div class="summary-row">
+                        <span>Total a pagar:</span>
+                        <span class="summary-total">$178,500</span>
+                    </div>
+                </div>
+
+                <div class="view-actions">
+                    <button class="btn btn-outline" id="backToSummaryBtn">Volver</button>
+                    <button class="btn btn-primary" id="processPaymentBtn">Pagar ahora</button>
+                </div>
+            </div>
+
+            <!-- Vista 3: Confirmación -->
+            <div class="payment-view" id="view3">
+                <div class="confirmation-container">
+                    <div class="confirmation-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h2>¡Pago exitoso!</h2>
+                    <p class="confirmation-message">Tu pago ha sido procesado correctamente.</p>
+                    
+                    <div class="transaction-details">
+                        <div class="detail-row">
+                            <span class="detail-label">ID de transacción:</span>
+                            <span class="detail-value" id="transactionId">TRX-20250411-78945</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Fecha:</span>
+                            <span class="detail-value" id="transactionDate">11/04/2025 15:23:45</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Método de pago:</span>
+                            <span class="detail-value" id="paymentMethod">Tarjeta de crédito terminada en 4567</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Monto:</span>
+                            <span class="detail-value" id="paymentAmount">$178,500</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="detail-label">Estado:</span>
+                            <span class="detail-value status-approved">Aprobado</span>
+                        </div>
+                    </div>
+                    
+                    <div class="confirmation-actions">
+                        <button class="btn btn-outline" id="downloadInvoiceBtn">
+                            <i class="fas fa-file-invoice"></i>
+                            Descargar factura
+                        </button>
+                        <button class="btn btn-primary" id="backToHomeBtn">
+                            <i class="fas fa-home"></i>
+                            Volver al inicio
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de procesamiento de pago -->
+    <div class="modal" id="processingModal">
+        <div class="modal-content">
+            <div class="processing-animation">
+                <div class="spinner"></div>
+            </div>
+            <h3>Procesando tu pago</h3>
+            <p id="processingMessage">Conectando con el banco...</p>
+            <div class="processing-progress">
+                <div class="progress-bar" id="processingProgressBar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de factura -->
+    <div class="modal" id="invoiceModal">
+        <div class="modal-content invoice-modal">
+            <div class="modal-header">
+                <h3>Factura Electrónica</h3>
+                <button class="close-modal" id="closeInvoiceModal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="invoice-container" id="invoiceContainer">
+                <div class="invoice-header">
+                    <div class="company-logo">
+                        <i class="fas fa-paw"></i>
+                        <span>VetInHouse</span>
+                    </div>
+                    <div class="invoice-info">
+                        <h2>FACTURA ELECTRÓNICA</h2>
+                        <div class="invoice-number">No. FE-78945</div>
+                        <div class="invoice-date" id="invoiceDate">Fecha: 11/04/2025</div>
+                    </div>
+                </div>
+                
+                <div class="invoice-parties">
+                    <div class="invoice-company">
+                        <h3>Datos del vendedor</h3>
+                        <p><strong>VetInHouse S.A.S.</strong></p>
+                        <p>NIT: 901.234.567-8</p>
+                        <p>Dirección: Calle 80 # 45-23, Bogotá</p>
+                        <p>Teléfono: (601) 345-6789</p>
+                        <p>Email: facturacion@vetinhouse.com</p>
+                    </div>
+                    <div class="invoice-customer">
+                        <h3>Datos del cliente</h3>
+                        <p><strong id="invoiceCustomerName">Carlos Andrés Pérez</strong></p>
+                        <p>CC: <span id="invoiceCustomerId">1020345678</span></p>
+                        <p>Dirección: <span id="invoiceCustomerAddress">Calle 45 #23-67, Apto 502, Bogotá</span></p>
+                        <p>Teléfono: <span id="invoiceCustomerPhone">3157894562</span></p>
+                        <p>Email: <span id="invoiceCustomerEmail">carlos.perez@gmail.com</span></p>
+                    </div>
+                </div>
+                
+                <div class="invoice-items">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Descripción</th>
+                                <th>Cantidad</th>
+                                <th>Valor unitario</th>
+                                <th>IVA</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Consulta Veterinaria</td>
+                                <td>1</td>
+                                <td>$80,000</td>
+                                <td>$15,200</td>
+                                <td>$95,200</td>
+                            </tr>
+                            <tr>
+                                <td>Medicamentos</td>
+                                <td>1</td>
+                                <td>$45,000</td>
+                                <td>$8,550</td>
+                                <td>$53,550</td>
+                            </tr>
+                            <tr>
+                                <td>Servicio a domicilio</td>
+                                <td>1</td>
+                                <td>$25,000</td>
+                                <td>$4,750</td>
+                                <td>$29,750</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="invoice-totals">
+                    <div class="totals-row">
+                        <span>Subtotal:</span>
+                        <span>$150,000</span>
+                    </div>
+                    <div class="totals-row">
+                        <span>IVA (19%):</span>
+                        <span>$28,500</span>
+                    </div>
+                    <div class="totals-row total">
+                        <span>Total:</span>
+                        <span>$178,500</span>
+                    </div>
+                </div>
+                
+                <div class="invoice-payment">
+                    <h3>Información de pago</h3>
+                    <div class="payment-row">
+                        <span>Método de pago:</span>
+                        <span id="invoicePaymentMethod">Tarjeta de crédito terminada en 4567</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>ID de transacción:</span>
+                        <span id="invoiceTransactionId">TRX-20250411-78945</span>
+                    </div>
+                    <div class="payment-row">
+                        <span>Estado:</span>
+                        <span class="status-approved">Aprobado</span>
+                    </div>
+                </div>
+                
+                <div class="invoice-footer">
+                    <div class="qr-code">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=FE-78945-VetInHouse-20250411" alt="QR Code">
+                    </div>
+                    <div class="footer-text">
+                        <p>Esta factura es válida como soporte fiscal según la resolución DIAN No. 18764000123 del 15/01/2025</p>
+                        <p>Factura generada electrónicamente por VetInHouse S.A.S.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="invoice-actions">
+                <button class="btn btn-outline" id="printInvoiceBtn">
+                    <i class="fas fa-print"></i>
+                    Imprimir
+                </button>
+                <button class="btn btn-primary" id="downloadPdfBtn">
+                    <i class="fas fa-file-pdf"></i>
+                    Descargar PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="pago.js"></script>
+</body>
+</html>
