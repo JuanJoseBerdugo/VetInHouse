@@ -69,7 +69,7 @@ const products = [
         oldPrice: 34.99,
         rating: 4.9,
         reviews: 37,
-        image: "https://images.unsplash.com/photo-1606937498456-4ed5ef207735?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+        image: "https://images.unsplash.com/photo-1631733571640-dcbae3f99c5e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
         badge: "sale",
         stock: 7
     },

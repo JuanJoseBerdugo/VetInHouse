@@ -1448,16 +1448,3 @@ footer {
         padding: 30px 20px;
     }
 }
-
-.mascotinder-btn {
-    background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
-    color: white !important;
-    border-radius: 20px;
-    padding: 8px 15px !important;
-    transition: all 0.3s ease;
-}
-
-.mascotinder-btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
-}
