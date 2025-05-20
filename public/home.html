@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VetInHouse - Inicio</title>
+    <title>VetInHouse - Cuidado veterinario a domicilio</title>
     <link rel="stylesheet" href="home.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 </head>
 <body>
     <!-- Loader -->
@@ -23,288 +22,342 @@
     <!-- Partículas de fondo -->
     <div id="particles-js"></div>
 
-    <!-- Huellas animadas -->
+    <!-- Elementos flotantes -->
     <div class="floating-elements">
-        <i class="fas fa-paw"></i>
         <i class="fas fa-bone"></i>
         <i class="fas fa-paw"></i>
-        <i class="fas fa-heart"></i>
-        <i class="fas fa-paw"></i>
+        <i class="fas fa-fish"></i>
+        <i class="fas fa-dog"></i>
+        <i class="fas fa-cat"></i>
     </div>
 
-    <!-- Navegación principal -->
-    <header class="animate__animated animate__fadeInDown">
+    <!-- Header -->
+    <header>
         <div class="header-container">
             <div class="logo">
-                <i class="fas fa-clinic-medical"></i>
+                <i class="fas fa-paw"></i>
                 <span>VetInHouse</span>
             </div>
-            
             <nav class="main-nav">
                 <ul>
-                    <li><a href="gps.html" class="nav-btn"><i class="fas fa-calendar-plus"></i> Ver agentes Disponibles</a></li>
-                    <li><a href="cita.html" class="nav-btn"><i class="fas fa-calendar-plus"></i> Agenda tu cita</a></li>
-                    <li><a href="consultacita.html" class="nav-btn"><i class="fas fa-calendar-check"></i> Consulta tus citas</a></li>
-                    <li><a href="paseador.html" class="nav-btn"><i class="fas fa-walking"></i> Conviértete en paseador</a></li>
-                    <li><a href="pago.html" class="nav-btn"><i class="fas fa-credit-card"></i> Paga tu saldo</a></li>
-                    <li><a href="MascoTinder.html" class="nav-btn mascotinder-btn"><i class="fas fa-paw"></i> MascoTinder</a></li>
-                    <li><a href="#" id="logoutBtn" class="nav-btn logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+                    <li><a href="home.html" class="nav-btn active"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="consultacita.html" class="nav-btn"><i class="fas fa-calendar-check"></i> Consulta Cita</a></li>
+                    <li><a href="cita.html" class="nav-btn"><i class="fas fa-calendar-alt"></i> Agendar Cita</a></li>
+                    <li><a href="petshop.html" class="nav-btn"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+                    <li><a href="paseador.html" class="nav-btn"><i class="fas fa-walking"></i> Paseadores</a></li>
+                    <li><a href="gps.html" class="nav-btn"><i class="fas fa-map-marker-alt"></i> GPS</a></li>
+                    <li><a href="#" class="nav-btn logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
                 </ul>
             </nav>
-            
             <div class="menu-toggle" id="menuToggle">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
             </div>
         </div>
-        
-        <!-- Menú móvil -->
-        <nav class="mobile-nav" id="mobileNav">
-            <ul>
-                <li><a href="gps.html" class="nav-btn"><i class="fas fa-calendar-plus"></i> Ver agentes Disponibles</a></li>
-                <li><a href="cita.html"><i class="fas fa-calendar-plus"></i> Agenda tu cita</a></li>
-                <li><a href="consultacita.html"><i class="fas fa-calendar-check"></i> Consulta tus citas</a></li>
-                <li><a href="paseador.html"><i class="fas fa-walking"></i> Conviértete en paseador</a></li>
-                <li><a href="pago.html"><i class="fas fa-credit-card"></i> Paga tu saldo</a></li>
-                <li><a href="MascoTinder.html"><i class="fas fa-paw"></i> MascoTinder</a></li>
-                <li><a href="#" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
-            </ul>
-        </nav>
     </header>
 
-    <main>
-        <!-- Banner principal -->
-        <section class="hero-banner animate__animated animate__fadeIn">
-            <div class="hero-content">
-                <h1>Bienvenido a <span class="highlight">VetInHouse</span></h1>
-                <p>Cuidado veterinario profesional en la comodidad de tu hogar</p>
-                <a href="cita.html" class="cta-button">
-                    <span>Agenda ahora</span>
-                    <i class="fas fa-arrow-right"></i>
-                </a>
-            </div>
-            <div class="hero-image">
-                <img src="https://cdn.pixabay.com/photo/2017/09/25/13/12/puppy-2785074_1280.jpg" alt="Veterinario con mascota">
-            </div>
-        </section>
+    <!-- Navegación móvil -->
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="home.html" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="consultacita.html"><i class="fas fa-calendar-check"></i> Consulta Cita</a></li>
+            <li><a href="cita.html"><i class="fas fa-calendar-alt"></i> Agendar Cita</a></li>
+            <li><a href="petshop.html"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+            <li><a href="paseador.html"><i class="fas fa-walking"></i> Paseadores</a></li>
+            <li><a href="gps.html"><i class="fas fa-map-marker-alt"></i> GPS</a></li>
+            <li><a href="#" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </nav>
 
-        <!-- Sección Conoce VetInHouse -->
-        <section class="about-section">
-            <h2 class="section-title" data-aos="fade-up">Conoce VetInHouse</h2>
-            
-            <div class="about-container">
-                <!-- Bloque Misión -->
-                <div class="about-block" data-aos="fade-up">
-                    <div class="about-image">
-                        <img src="https://cdn.pixabay.com/photo/2020/03/08/11/22/cat-4912213_1280.jpg" alt="Gatito feliz">
-                    </div>
-                    <div class="about-content">
-                        <div class="about-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <h3>Nuestra Misión</h3>
-                        <p>En VetInHouse, nuestra misión es proporcionar atención veterinaria de calidad en la comodidad de tu hogar, garantizando el bienestar de tus mascotas y evitando el estrés de los traslados.</p>
-                    </div>
-                </div>
+    <!-- Hero Banner -->
+    <section class="hero-banner">
+        <div class="hero-content" data-aos="fade-right">
+            <h1>Cuidado veterinario en la <span class="highlight">comodidad</span> de tu hogar</h1>
+            <p>Ofrecemos servicios veterinarios a domicilio, paseadores de perros y todo lo que tu mascota necesita sin que tengas que salir de casa.</p>
+            <a href="cita.html" class="cta-button">Agenda una cita <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image" data-aos="fade-left">
+            <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Veterinario con mascota">
+        </div>
+    </section>
 
-                <!-- Bloque Visión -->
-                <div class="about-block" data-aos="fade-up">
-                    <div class="about-image">
-                        <img src="https://cdn.pixabay.com/photo/2023/03/19/09/20/animals-7862112_1280.jpg" alt="Perros felices">
-                    </div>
-                    <div class="about-content">
-                        <div class="about-icon">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                        <h3>Nuestra Visión</h3>
-                        <p>Queremos ser la plataforma líder en atención veterinaria domiciliaria, ofreciendo un servicio accesible, rápido y confiable que revolucione la forma en que cuidamos a nuestras mascotas.</p>
-                    </div>
+    <!-- Accesos rápidos -->
+    <section class="quick-access">
+        <div class="quick-access-container">
+            <a href="cita.html" class="quick-access-card" data-aos="fade-up">
+                <div class="quick-access-icon">
+                    <i class="fas fa-calendar-alt"></i>
                 </div>
+                <h3>Agendar Cita</h3>
+                <p>Programa una visita veterinaria a domicilio</p>
+            </a>
+            <a href="petshop.html" class="quick-access-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="quick-access-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <h3>PetShop</h3>
+                <p>Productos de calidad para tu mascota</p>
+            </a>
+            <a href="paseador.html" class="quick-access-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="quick-access-icon">
+                    <i class="fas fa-walking"></i>
+                </div>
+                <h3>Paseadores</h3>
+                <p>Encuentra paseadores confiables para tu mascota</p>
+            </a>
+            <a href="gps.html" class="quick-access-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="quick-access-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>GPS</h3>
+                <p>Localiza a tu mascota en tiempo real</p>
+            </a>
+        </div>
+    </section>
 
-                <!-- Bloque Por qué lo hacemos -->
-                <div class="about-block" data-aos="fade-up">
-                    <div class="about-image">
-                        <img src="https://cdn.pixabay.com/photo/2012/12/21/10/06/cat-71494_1280.jpg" alt="Perro y gato juntos">
-                    </div>
-                    <div class="about-content">
-                        <div class="about-icon">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h3>¿Por qué lo hacemos?</h3>
-                        <p>Sabemos lo importante que es la salud de tu mascota, por eso facilitamos el acceso a veterinarios y paseadores con solo un clic. Creemos que el cuidado de calidad debe ser accesible para todos.</p>
-                    </div>
+    <!-- Sección Conoce VetInHouse -->
+    <section class="about-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Conoce VetInHouse</h2>
+        </div>
+        <div class="about-container">
+            <div class="about-block" data-aos="fade-up">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1527153857715-3908f2bae5e8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Misión VetInHouse">
                 </div>
-            </div>
-        </section>
-
-        <!-- Servicios destacados -->
-        <section class="services-section">
-            <h2 class="section-title" data-aos="fade-up">Nuestros Servicios</h2>
-            
-            <div class="services-container">
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="service-icon">
-                        <i class="fas fa-stethoscope"></i>
+                <div class="about-content">
+                    <div class="about-icon">
+                        <i class="fas fa-bullseye"></i>
                     </div>
-                    <h3>Consulta General</h3>
-                    <p>Evaluación completa del estado de salud de tu mascota en la comodidad de tu hogar.</p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <div class="service-icon">
-                        <i class="fas fa-syringe"></i>
-                    </div>
-                    <h3>Vacunación</h3>
-                    <p>Programa completo de vacunación para perros y gatos con seguimiento personalizado.</p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <div class="service-icon">
-                        <i class="fas fa-tooth"></i>
-                    </div>
-                    <h3>Limpieza Dental</h3>
-                    <p>Cuidado dental profesional para prevenir enfermedades y mantener la salud bucal.</p>
-                </div>
-                
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <div class="service-icon">
-                        <i class="fas fa-cut"></i>
-                    </div>
-                    <h3>Peluquería</h3>
-                    <p>Servicio de estética y cuidado del pelaje adaptado a las necesidades de cada mascota.</p>
+                    <h3>Nuestra Misión</h3>
+                    <p>En VetInHouse, nuestra misión es proporcionar atención veterinaria de calidad en la comodidad de tu hogar, garantizando el bienestar de tus mascotas y evitando el estrés de los traslados.</p>
                 </div>
             </div>
-        </section>
+            <div class="about-block" data-aos="fade-up">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Visión VetInHouse">
+                </div>
+                <div class="about-content">
+                    <div class="about-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Nuestra Visión</h3>
+                    <p>Queremos ser la plataforma líder en atención veterinaria domiciliaria, ofreciendo un servicio accesible, rápido y confiable que revolucione la forma en que cuidamos a nuestras mascotas.</p>
+                </div>
+            </div>
+            <div class="about-block" data-aos="fade-up">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Por qué lo hacemos">
+                </div>
+                <div class="about-content">
+                    <div class="about-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>¿Por qué lo hacemos?</h3>
+                    <p>Sabemos lo importante que es la salud de tu mascota, por eso facilitamos el acceso a veterinarios y paseadores con solo un clic. Creemos que el cuidado de calidad debe ser accesible para todos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Testimonios -->
-        <section class="testimonials-section" data-aos="fade-up">
-            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
-            
-            <div class="testimonials-container">
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <i class="fas fa-quote-left"></i>
-                        <p>El servicio de VetInHouse ha sido una bendición para mi perro anciano. Ya no tenemos que pasar por el estrés de llevarlo a la clínica.</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Cliente">
-                        <div>
-                            <h4>María González</h4>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
+    <!-- Sección de servicios -->
+    <section class="services-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Nuestros Servicios</h2>
+        </div>
+        <div class="services-container">
+            <div class="service-card" data-aos="fade-up">
+                <div class="service-icon">
+                    <i class="fas fa-stethoscope"></i>
                 </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <i class="fas fa-quote-left"></i>
-                        <p>Los veterinarios son muy profesionales y amables. Mi gata, que normalmente es muy asustadiza, se sintió cómoda durante toda la consulta.</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Cliente">
-                        <div>
-                            <h4>Carlos Rodríguez</h4>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
+                <h3>Consulta General</h3>
+                <p>Evaluación completa del estado de salud de tu mascota en la comodidad de tu hogar.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="service-icon">
+                    <i class="fas fa-syringe"></i>
                 </div>
-                
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <i class="fas fa-quote-left"></i>
-                        <p>El servicio de paseadores es excelente. Siempre puntuales y envían fotos durante el paseo. Mi perro los adora.</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Cliente">
-                        <div>
-                            <h4>Laura Martínez</h4>
-                            <div class="rating">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
+                <h3>Vacunación</h3>
+                <p>Programa completo de vacunación para perros y gatos con seguimiento personalizado.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="service-icon">
+                    <i class="fas fa-tooth"></i>
+                </div>
+                <h3>Limpieza Dental</h3>
+                <p>Cuidado dental profesional para prevenir enfermedades y mantener la salud bucal.</p>
+            </div>
+            <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="service-icon">
+                    <i class="fas fa-cut"></i>
+                </div>
+                <h3>Peluquería</h3>
+                <p>Servicio de estética y cuidado del pelaje adaptado a las necesidades de cada mascota.</p>
+            </div>
+        </div>
+        <div class="services-button-container" data-aos="fade-up">
+            <a href="cita.html" class="services-button">Agendar un servicio <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Banner de PetShop -->
+    <section class="petshop-banner">
+        <div class="petshop-content">
+            <div class="petshop-icon">
+                <i class="fas fa-shopping-cart"></i>
+                <i class="fas fa-paw"></i>
+            </div>
+            <h2>Descubre nuestro PetShop</h2>
+            <p>Encuentra alimentos premium, accesorios, juguetes y todo lo que necesitas para el cuidado y bienestar de tu compañero peludo.</p>
+            <a href="petshop.html" class="petshop-button">Ir a la tienda <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Banner de Paseadores -->
+    <section class="paseador-banner">
+        <div class="paseador-content">
+            <div class="paseador-icon">
+                <i class="fas fa-walking"></i>
+                <i class="fas fa-dog"></i>
+            </div>
+            <h2>Paseadores de Confianza</h2>
+            <p>Nuestros paseadores profesionales se encargarán de que tu mascota reciba el ejercicio que necesita mientras tú te ocupas de tus actividades diarias.</p>
+            <a href="paseador.html" class="paseador-button">Encontrar paseador <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Sección de testimonios -->
+    <section class="testimonials-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Lo que dicen nuestros clientes</h2>
+        </div>
+        <div class="testimonials-container">
+            <div class="testimonial-card" data-aos="fade-up">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>El servicio de VetInHouse ha sido una bendición para mi perro anciano. Ya no tenemos que pasar por el estrés de llevarlo a la clínica.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="María Rodríguez">
+                    <div>
+                        <h4>María Rodríguez</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Call to Action -->
-        <section class="cta-section" data-aos="zoom-in">
-            <div class="cta-content">
-                <h2>¿Listo para cuidar de tu mascota?</h2>
-                <p>Agenda una cita ahora y recibe atención veterinaria profesional en la comodidad de tu hogar.</p>
-                <a href="cita.html" class="cta-button">
-                    <span>Agendar cita</span>
-                    <i class="fas fa-paw"></i>
-                </a>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>Los veterinarios son muy profesionales y amables. Mi gata, que normalmente es muy asustadiza, se sintió cómoda durante toda la consulta.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Méndez">
+                    <div>
+                        <h4>Carlos Méndez</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </section>
+            <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="testimonial-content">
+                    <i class="fas fa-quote-left"></i>
+                    <p>El servicio de paseadores es excelente. Siempre puntuales y envían fotos durante el paseo. Mi perro los adora.</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Laura Torres">
+                    <div>
+                        <h4>Laura Torres</h4>
+                        <div class="rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        
-    </main>
+    <!-- Sección CTA -->
+    <section class="cta-section">
+        <div class="cta-content" data-aos="zoom-in">
+            <h2>¿Listo para cuidar de tu mascota?</h2>
+            <p>Agenda una cita ahora y recibe atención veterinaria profesional en la comodidad de tu hogar.</p>
+            <a href="cita.html" class="cta-button">Agendar cita <i class="fas fa-calendar-check"></i></a>
+        </div>
+    </section>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-column">
-                <h3>VetInHouse</h3>
-                <p>Cuidado veterinario a domicilio con profesionales certificados.</p>
+                <h3>Sobre VetInHouse</h3>
+                <p>Ofrecemos servicios veterinarios a domicilio y productos de calidad para el cuidado de tus mascotas.</p>
                 <div class="social-icons">
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
                     <a href="#"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            
             <div class="footer-column">
                 <h3>Enlaces rápidos</h3>
                 <ul>
-                    <li><a href="cita.html">Agenda tu cita</a></li>
-                    <li><a href="consultacita.html">Consulta tus citas</a></li>
-                    <li><a href="paseador.html">Conviértete en paseador</a></li>
-                    <li><a href="pago.html">Paga tu saldo</a></li>
-                    <li><a href="MascoTinder.html">MascoTinder</a></li>
+                    <li><a href="home.html">Inicio</a></li>
+                    <li><a href="consultacita.html">Consulta Cita</a></li>
+                    <li><a href="cita.html">Agendar Cita</a></li>
+                    <li><a href="petshop.html">PetShop</a></li>
+                    <li><a href="paseador.html">Paseadores</a></li>
+                    <li><a href="gps.html">GPS</a></li>
                 </ul>
             </div>
-            
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="cita.html">Consulta general</a></li>
+                    <li><a href="cita.html">Vacunación</a></li>
+                    <li><a href="cita.html">Limpieza dental</a></li>
+                    <li><a href="cita.html">Peluquería</a></li>
+                    <li><a href="paseador.html">Paseo de mascotas</a></li>
+                </ul>
+            </div>
             <div class="footer-column">
                 <h3>Contacto</h3>
                 <ul class="contact-info">
-                    <li><i class="fas fa-phone"></i> (123) 456-7890</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Principal #123, Ciudad</li>
+                    <li><i class="fas fa-phone"></i> +123 456 7890</li>
                     <li><i class="fas fa-envelope"></i> info@vetinhouse.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Bogotá, Colombia</li>
                 </ul>
             </div>
         </div>
-        
         <div class="footer-bottom">
             <p>&copy; 2025 VetInHouse. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <!-- Botón de volver arriba -->
-    <button id="scrollToTop" class="scroll-to-top">
+    <button class="scroll-to-top" id="scrollToTop">
         <i class="fas fa-arrow-up"></i>
     </button>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script type="module" src="home.js"></script>
 </body>
 </html>

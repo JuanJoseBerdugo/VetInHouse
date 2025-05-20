@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetShop - VetInHouse</title>
+    <link rel="stylesheet" href="petshop.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+</head>
+<body>
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="paw-print">
+                <i class="fas fa-paw"></i>
+            </div>
+            <p>Cargando...</p>
+        </div>
+    </div>
+
+    <!-- Partículas de fondo -->
+    <div id="particles-js"></div>
+
+    <!-- Elementos flotantes -->
+    <div class="floating-elements">
+        <i class="fas fa-bone"></i>
+        <i class="fas fa-paw"></i>
+        <i class="fas fa-fish"></i>
+        <i class="fas fa-dog"></i>
+        <i class="fas fa-cat"></i>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <span>VetInHouse</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="home.html" class="nav-btn"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#" class="nav-btn"><i class="fas fa-stethoscope"></i> Servicios</a></li>
+                    <li><a href="#" class="nav-btn active"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+                    <li><a href="#" class="nav-btn"><i class="fas fa-user-md"></i> Veterinarios</a></li>
+                    <li><a href="#" class="nav-btn mascotinder-btn"><i class="fas fa-heart"></i> MascoTinder</a></li>
+                    <li><a href="#" class="nav-btn"><i class="fas fa-user"></i> Mi Perfil</a></li>
+                    <li><a href="#" class="nav-btn logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación móvil -->
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#"><i class="fas fa-stethoscope"></i> Servicios</a></li>
+            <li><a href="#" class="active"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+            <li><a href="#"><i class="fas fa-user-md"></i> Veterinarios</a></li>
+            <li><a href="#"><i class="fas fa-heart"></i> MascoTinder</a></li>
+            <li><a href="#"><i class="fas fa-user"></i> Mi Perfil</a></li>
+            <li><a href="#" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner principal -->
+    <section class="petshop-banner">
+        <div class="petshop-container">
+            <div class="petshop-content" data-aos="fade-right">
+                <h1>Todo para tu <span class="highlight">mascota</span> en un solo lugar</h1>
+                <p>Encuentra alimentos premium, accesorios, juguetes y todo lo que necesitas para el cuidado y bienestar de tu compañero peludo.</p>
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar productos...">
+                    <button id="searchButton"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <div class="petshop-image" data-aos="fade-left">
+                <img src="https://images.unsplash.com/photo-1583337130417-3346a1be7dee?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Productos para mascotas">
+            </div>
+        </div>
+    </section>
+
+    <!-- Categorías -->
+    <section class="categories-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Categorías</h2>
+        </div>
+        <div class="categories-container">
+            <div class="category-card" data-aos="fade-up" data-category="alimentos">
+                <div class="category-icon">
+                    <i class="fas fa-drumstick-bite"></i>
+                </div>
+                <h3>Alimentos</h3>
+                <p>Alimentos premium para perros y gatos</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-category="accesorios">
+                <div class="category-icon">
+                    <i class="fas fa-bone"></i>
+                </div>
+                <h3>Accesorios</h3>
+                <p>Collares, correas, camas y más</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-category="juguetes">
+                <div class="category-icon">
+                    <i class="fas fa-baseball-ball"></i>
+                </div>
+                <h3>Juguetes</h3>
+                <p>Diversión y entretenimiento para tu mascota</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-category="higiene">
+                <div class="category-icon">
+                    <i class="fas fa-shower"></i>
+                </div>
+                <h3>Higiene</h3>
+                <p>Productos para el cuidado y limpieza</p>
+            </div>
+            <div class="category-card" data-aos="fade-up" data-category="salud">
+                <div class="category-icon">
+                    <i class="fas fa-heartbeat"></i>
+                </div>
+                <h3>Salud</h3>
+                <p>Suplementos y medicamentos</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Productos -->
+    <section class="products-section">
+        <div class="section-title" data-aos="fade-up">
+            <h2>Productos Destacados</h2>
+        </div>
+        <div class="filter-container">
+            <div class="filter-options">
+                <span>Filtrar por: </span>
+                <select id="petTypeFilter">
+                    <option value="all">Todas las mascotas</option>
+                    <option value="dog">Perros</option>
+                    <option value="cat">Gatos</option>
+                    <option value="other">Otras mascotas</option>
+                </select>
+                <select id="priceFilter">
+                    <option value="all">Todos los precios</option>
+                    <option value="low">Menor precio</option>
+                    <option value="high">Mayor precio</option>
+                </select>
+            </div>
+            <div class="view-options">
+                <button id="gridView" class="active"><i class="fas fa-th"></i></button>
+                <button id="listView"><i class="fas fa-list"></i></button>
+            </div>
+        </div>
+        <div class="products-container grid-view" id="productsContainer">
+            <!-- Los productos se cargarán dinámicamente desde JavaScript -->
+        </div>
+        <div class="load-more" data-aos="fade-up">
+            <button id="loadMoreBtn">Cargar más productos</button>
+        </div>
+    </section>
+
+    <!-- Carrito de compras -->
+    <div class="cart-container" id="cartContainer">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-cart"></i> Tu Carrito</h3>
+            <button id="closeCartBtn"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Los items del carrito se cargarán dinámicamente -->
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Tu carrito está vacío</p>
+            </div>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">$0.00</span>
+            </div>
+            <button id="checkoutBtn" class="checkout-btn">Proceder al pago</button>
+        </div>
+    </div>
+
+    <!-- Overlay para el carrito -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Botón flotante del carrito -->
+    <button class="floating-cart-btn" id="floatingCartBtn">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h3>Finalizar Compra</h3>
+                <button id="closeCheckoutBtn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="checkout-form">
+                <div class="form-group">
+                    <label for="fullName">Nombre completo</label>
+                    <input type="text" id="fullName" placeholder="Ingresa tu nombre completo">
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" placeholder="Ingresa tu correo electrónico">
+                </div>
+                <div class="form-group">
+                    <label for="address">Dirección de entrega</label>
+                    <input type="text" id="address" placeholder="Ingresa tu dirección completa">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">Ciudad</label>
+                        <input type="text" id="city" placeholder="Ciudad">
+                    </div>
+                    <div class="form-group">
+                        <label for="zipCode">Código postal</label>
+                        <input type="text" id="zipCode" placeholder="Código postal">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="paymentMethod">Método de pago</label>
+                    <select id="paymentMethod">
+                        <option value="">Selecciona un método de pago</option>
+                        <option value="creditCard">Tarjeta de crédito</option>
+                        <option value="debitCard">Tarjeta de débito</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                </div>
+                <div class="card-details" id="cardDetails">
+                    <div class="form-group">
+                        <label for="cardNumber">Número de tarjeta</label>
+                        <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="expiryDate">Fecha de expiración</label>
+                            <input type="text" id="expiryDate" placeholder="MM/AA">
+                        </div>
+                        <div class="form-group">
+                            <label for="cvv">CVV</label>
+                            <input type="text" id="cvv" placeholder="123">
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-summary">
+                    <h4>Resumen de compra</h4>
+                    <div class="summary-item">
+                        <span>Subtotal:</span>
+                        <span id="checkoutSubtotal">$0.00</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>Envío:</span>
+                        <span id="checkoutShipping">$5.00</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>Total:</span>
+                        <span id="checkoutTotal">$0.00</span>
+                    </div>
+                </div>
+                <button id="placeOrderBtn" class="place-order-btn">Realizar pedido</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay para el checkout -->
+    <div class="checkout-overlay" id="checkoutOverlay"></div>
+
+    <!-- Orden completada Modal -->
+    <div class="order-completed-modal" id="orderCompletedModal">
+        <div class="order-completed-content">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Pedido realizado con éxito!</h3>
+            <p>Tu pedido ha sido procesado correctamente. Recibirás un correo electrónico con los detalles de tu compra.</p>
+            <p class="order-number">Número de pedido: <span id="orderNumber"></span></p>
+            <button id="continueShoppingBtn">Continuar comprando</button>
+        </div>
+    </div>
+
+    <!-- Botón de volver arriba -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Sobre VetInHouse</h3>
+                <p>Ofrecemos servicios veterinarios a domicilio y productos de calidad para el cuidado de tus mascotas.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="home.html">Inicio</a></li>
+                    <li><a href="#">Servicios</a></li>
+                    <li><a href="#">PetShop</a></li>
+                    <li><a href="#">Veterinarios</a></li>
+                    <li><a href="#">MascoTinder</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="#">Consulta general</a></li>
+                    <li><a href="#">Vacunación</a></li>
+                    <li><a href="#">Limpieza dental</a></li>
+                    <li><a href="#">Peluquería</a></li>
+                    <li><a href="#">Paseo de mascotas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Principal #123, Ciudad</li>
+                    <li><i class="fas fa-phone"></i> +123 456 7890</li>
+                    <li><i class="fas fa-envelope"></i> info@vetinhouse.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VetInHouse. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script type="module" src="petshop.js"></script>
+</body>
+</html>
