@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - VetInHouse</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="login-page">
+    <!-- Partículas de fondo -->
+    <div id="particles-js"></div>
+
+    <!-- Contenedor del video de fondo -->
+    <div class="video-container">
+        <video autoplay muted loop class="background-video">
+            <source src="https://cdn.pixabay.com/video/2020/05/13/39009-420224623_large.mp4" type="video/mp4">
+            Tu navegador no soporta el tag de video.
+        </video>
+        <div class="overlay"></div>
+    </div>
+
+    <!-- Huellas animadas -->
+    <div class="paw-prints">
+        <i class="fas fa-paw"></i>
+        <i class="fas fa-paw"></i>
+        <i class="fas fa-paw"></i>
+    </div>
+
+    <!-- Contenedor del login -->
+    <div class="login-container animate__animated animate__fadeIn">
+        <div class="logo-container">
+            <i class="fas fa-clinic-medical logo-icon"></i>
+            <h1>VetInHouse</h1>
+        </div>
+        
+        <h2 class="animate__animated animate__fadeInDown">Iniciar Sesión</h2>
+        
+        <div class="input-group animate__animated animate__fadeInLeft animate__delay-1s">
+            <div class="input-icon">
+                <i class="fas fa-envelope"></i>
+            </div>
+            <input type="email" id="loginEmail" placeholder="Correo Electrónico">
+            <span class="input-focus-border"></span>
+        </div>
+
+        <div class="input-group animate__animated animate__fadeInRight animate__delay-1s">
+            <div class="input-icon">
+                <i class="fas fa-lock"></i>
+            </div>
+            <input type="password" id="loginPassword" placeholder="Contraseña">
+            <span class="input-focus-border"></span>
+            <i class="fas fa-eye-slash toggle-password"></i>
+        </div>
+
+        <button id="loginBtn" class="animate__animated animate__fadeInUp animate__delay-2s">
+            <span>Ingresar</span>
+            <i class="fas fa-paw"></i>
+        </button>
+
+        <p id="loginMessage"></p>
+        
+        <div class="additional-links animate__animated animate__fadeIn animate__delay-2s">
+            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            <p>¿No tienes cuenta? <a href="register.html" class="register-link">Regístrate aquí</a></p>
+        </div>
+    </div>
+
+    <!-- Burbujas flotantes -->
+    <div class="bubbles">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script type="module" src="firebase-config.js"></script>
+    <script type="module" src="login.js"></script>
+</body>
+</html>

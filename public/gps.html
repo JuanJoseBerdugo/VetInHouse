@@ -1,65 +1,195 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Agentes Disponibles - VetInHouse</title>
-  <link rel="stylesheet" href="gps.css" />
-  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GPS Agentes - VetInHouse</title>
+    <link rel="stylesheet" href="gps.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <header class="main-header">
-    <div class="header-container">
-      <div class="logo">
-        <i class="fas fa-clinic-medical"></i>
-        <span>VetInHouse</span>
-      </div>
-      <nav class="main-nav">
+    <!-- Loader -->
+    <div class="loader-container" id="loader">
+        <div class="loader">
+            <div class="paw-print">
+                <i class="fas fa-paw"></i>
+            </div>
+            <p>Cargando...</p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <span>VetInHouse</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="home.html" class="nav-btn"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="consultacita.html" class="nav-btn"><i class="fas fa-calendar-check"></i> Consulta Cita</a></li>
+                    <li><a href="cita.html" class="nav-btn"><i class="fas fa-calendar-alt"></i> Agendar Cita</a></li>
+                    <li><a href="petshop.html" class="nav-btn"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+                    <li><a href="paseador.html" class="nav-btn"><i class="fas fa-walking"></i> Paseadores</a></li>
+                    <li><a href="gps.html" class="nav-btn active"><i class="fas fa-map-marker-alt"></i> GPS</a></li>
+                    <li><a href="#" class="nav-btn logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación móvil -->
+    <nav class="mobile-nav" id="mobileNav">
         <ul>
-          <li><a href="home.html" class="nav-btn"><i class="fas fa-home"></i> Inicio</a></li>
-          <li><a href="cita.html" class="nav-btn"><i class="fas fa-calendar-plus"></i> Agenda tu cita</a></li>
-          <li><a href="consultacita.html" class="nav-btn"><i class="fas fa-calendar-check"></i> Consulta tus citas</a></li>
-          <li><a href="paseador.html" class="nav-btn"><i class="fas fa-walking"></i> Conviértete en paseador</a></li>
-          <li><a href="pago.html" class="nav-btn"><i class="fas fa-credit-card"></i> Paga tu saldo</a></li>
-          <li><a href="MascoTinder.html" class="nav-btn"><i class="fas fa-paw"></i> MascoTinder</a></li>
-          <li><a href="#" class="nav-btn logout-btn"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</a></li>
+            <li><a href="home.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="consultacita.html"><i class="fas fa-calendar-check"></i> Consulta Cita</a></li>
+            <li><a href="cita.html"><i class="fas fa-calendar-alt"></i> Agendar Cita</a></li>
+            <li><a href="petshop.html"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+            <li><a href="paseador.html"><i class="fas fa-walking"></i> Paseadores</a></li>
+            <li><a href="gps.html" class="active"><i class="fas fa-map-marker-alt"></i> GPS</a></li>
+            <li><a href="#" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
         </ul>
-      </nav>
-    </div>
-  </header>
+    </nav>
 
-  <div id="map"></div>
+    <!-- Sección del mapa y filtros -->
+    <section class="map-section">
+        <div class="container">
+            <div class="map-header">
+                <h1><i class="fas fa-map-marked-alt"></i> Localiza Agentes en Medellín</h1>
+                <p>Encuentra paseadores y veterinarios disponibles cerca de tu ubicación</p>
+                
+                <div class="map-filters">
+                    <div class="filter-group">
+                        <label for="agentType">Tipo de Agente:</label>
+                        <select id="agentType">
+                            <option value="all">Todos</option>
+                            <option value="paseador">Paseadores</option>
+                            <option value="veterinario">Veterinarios</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="zoneFilter">Zona:</label>
+                        <select id="zoneFilter">
+                            <option value="all">Todas</option>
+                            <option value="estadio">Estadio</option>
+                            <option value="centro">Centro</option>
+                            <option value="laureles">Laureles</option>
+                            <option value="poblado">El Poblado</option>
+                            <option value="belen">Belén</option>
+                        </select>
+                    </div>
+                    <button id="findNearestBtn" class="btn-find-nearest">
+                        <i class="fas fa-location-arrow"></i> Encontrar más cercano
+                    </button>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <div id="map"></div>
+                <div class="map-legend">
+                    <div class="legend-item">
+                        <span class="marker-icon paseador"></span>
+                        <span>Paseador</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="marker-icon veterinario"></span>
+                        <span>Veterinario</span>
+                    </div>
+                    <div class="legend-item">
+                        <span class="marker-icon user"></span>
+                        <span>Tu ubicación</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <section class="agents-section">
-    <div class="agent-card">
-      <img src="https://randomuser.me/api/portraits/women/20.jpg" alt="Martina">
-      <h3>Martina Vargas, 24 años</h3>
-      <p><strong>Ubicación:</strong> Estadio</p>
-      <p><strong>Paseos realizados:</strong> 134</p>
-      <p><strong>Teléfono:</strong> 311 620 1606</p>
-      <a href="cita.html" class="btn-agendar">Agendar tu cita con este agente</a>
-    </div>
-    <div class="agent-card">
-      <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Laura">
-      <h3>Laura Blanco, 26 años</h3>
-      <p><strong>Ubicación:</strong> Centro</p>
-      <p><strong>Paseos realizados:</strong> 142</p>
-      <p><strong>Teléfono:</strong> 302 241 6269</p>
-      <a href="cita.html" class="btn-agendar">Agendar tu cita con este agente</a>
-    </div>
-    <div class="agent-card">
-      <img src="https://randomuser.me/api/portraits/men/43.jpg" alt="Julián">
-      <h3>Julián Gómez, 30 años</h3>
-      <p><strong>Ubicación:</strong> Laureles</p>
-      <p><strong>Paseos realizados:</strong> 198</p>
-      <p><strong>Teléfono:</strong> 313 620 9876</p>
-      <a href="cita.html" class="btn-agendar">Agendar tu cita con este agente</a>
-    </div>
-    <!-- Agrega más agentes aquí -->
-  </section>
+    <!-- Sección de agentes -->
+    <section class="agents-section">
+        <div class="container">
+            <h2>Agentes Disponibles</h2>
+            <div class="agents-container" id="agentsContainer">
+                <!-- Los agentes se cargarán dinámicamente desde JavaScript -->
+            </div>
+        </div>
+    </section>
 
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script src="gps.js"></script>
+    <!-- Modal de detalles del agente -->
+    <div class="agent-modal" id="agentModal">
+        <div class="agent-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="agent-modal-body" id="agentModalBody">
+                <!-- Contenido del modal -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Overlay para el modal -->
+    <div class="modal-overlay" id="modalOverlay"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-column">
+                <h3>Sobre VetInHouse</h3>
+                <p>Ofrecemos servicios veterinarios a domicilio y productos de calidad para el cuidado de tus mascotas.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Enlaces rápidos</h3>
+                <ul>
+                    <li><a href="home.html">Inicio</a></li>
+                    <li><a href="consultacita.html">Consulta Cita</a></li>
+                    <li><a href="cita.html">Agendar Cita</a></li>
+                    <li><a href="petshop.html">PetShop</a></li>
+                    <li><a href="paseador.html">Paseadores</a></li>
+                    <li><a href="gps.html">GPS</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Servicios</h3>
+                <ul>
+                    <li><a href="cita.html">Consulta general</a></li>
+                    <li><a href="cita.html">Vacunación</a></li>
+                    <li><a href="cita.html">Limpieza dental</a></li>
+                    <li><a href="cita.html">Peluquería</a></li>
+                    <li><a href="paseador.html">Paseo de mascotas</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contacto</h3>
+                <ul class="contact-info">
+                    <li><i class="fas fa-map-marker-alt"></i> Av. Principal #123, Medellín</li>
+                    <li><i class="fas fa-phone"></i> +57 604 123 4567</li>
+                    <li><i class="fas fa-envelope"></i> info@vetinhouse.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 VetInHouse. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón de volver arriba -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script type="module" src="gps.js"></script>
 </body>
 </html>
