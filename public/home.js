@@ -1,4 +1,4 @@
-import { auth } from "./firebase-config.js";
+ import { auth } from "./firebase-config.js";
 import { signOut } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
 
 // Inicializar AOS (Animate on Scroll)
