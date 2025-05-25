@@ -1,6 +1,6 @@
 // Importar funciones de Firebase
 import { auth } from './firebase-config.js';
-import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 // Configuración de partículas
 particlesJS('particles-js', {
@@ -111,8 +111,6 @@ let successAnimationActive = false;
 
 // Funcionalidad de mostrar/ocultar contraseña
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🔥 Firebase Hosting - DOM Cargado');
-    
     const togglePassword = document.querySelector('.toggle-password');
     const passwordInput = document.getElementById('loginPassword');
     
@@ -146,7 +144,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (loginBtn) {
         loginBtn.addEventListener('click', handleLogin);
-        console.log('🔥 Event listener agregado al botón de login');
     }
     
     // Permitir login con Enter
@@ -159,7 +156,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Función para manejar el login
 async function handleLogin() {
-    console.log('🔥 Firebase Hosting - handleLogin ejecutado');
+    console.log('Iniciando proceso de login...');
     
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
@@ -182,11 +179,11 @@ async function handleLogin() {
     loginBtn.innerHTML = '<span>Iniciando sesión...</span><i class="fas fa-spinner fa-spin"></i>';
     
     try {
-        console.log('🔥 Intentando autenticar con Firebase...');
+        console.log('Intentando autenticar con Firebase...');
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
         const user = userCredential.user;
         
-        console.log('🔥 Login exitoso:', user.email);
+        console.log('Login exitoso:', user.email);
         showMessage('¡Inicio de sesión exitoso!', 'success');
         
         // Guardar información del usuario en localStorage
@@ -195,12 +192,12 @@ async function handleLogin() {
         
         // Activar animación de éxito después de un breve delay
         setTimeout(() => {
-            console.log('🔥 Activando animación de éxito...');
+            console.log('Activando animación de éxito...');
             activateSuccessAnimation();
         }, 1000);
         
     } catch (error) {
-        console.error('🔥 Error en el login:', error);
+        console.error('Error en el login:', error);
         
         let errorMessage = 'Error al iniciar sesión';
         
@@ -234,12 +231,10 @@ async function handleLogin() {
         
         // Efecto de shake en error
         const loginContainer = document.getElementById('loginContainer');
-        if (loginContainer) {
-            loginContainer.style.animation = 'shake 0.5s ease-in-out';
-            setTimeout(() => {
-                loginContainer.style.animation = '';
-            }, 500);
-        }
+        loginContainer.style.animation = 'shake 0.5s ease-in-out';
+        setTimeout(() => {
+            loginContainer.style.animation = '';
+        }, 500);
         
     } finally {
         // Rehabilitar botón
@@ -250,7 +245,7 @@ async function handleLogin() {
 
 // FUNCIÓN DE ANIMACIÓN DE ÉXITO ÉPICA
 function activateSuccessAnimation() {
-    console.log('🔥 Firebase Hosting - Ejecutando animación de éxito...');
+    console.log('Ejecutando animación de éxito...');
     
     if (successAnimationActive) return;
     successAnimationActive = true;
@@ -259,23 +254,20 @@ function activateSuccessAnimation() {
     const loginContainer = document.getElementById('loginContainer');
     
     if (!successAnimation) {
-        console.error('🔥 No se encontró el elemento successAnimation');
+        console.error('No se encontró el elemento successAnimation');
         // Redirigir directamente si no hay animación
-        console.log('🔥 Redirigiendo directamente a index.html...');
-        window.location.replace(window.location.origin + "/index.html");
+        window.location.href = "home.html";
         return;
     }
     
     // Ocultar el formulario de login con animación
-    if (loginContainer) {
-        loginContainer.style.transform = 'translate(-50%, -50%) scale(0.8)';
-        loginContainer.style.opacity = '0';
-    }
+    loginContainer.style.transform = 'translate(-50%, -50%) scale(0.8)';
+    loginContainer.style.opacity = '0';
     
     setTimeout(() => {
         // Mostrar animación de éxito
         successAnimation.classList.add('show');
-        console.log('🔥 Animación de éxito activada');
+        console.log('Animación de éxito activada');
         
         // Crear confetti
         createConfetti();
@@ -288,9 +280,8 @@ function activateSuccessAnimation() {
         
         // Redirigir después de la animación
         setTimeout(() => {
-            console.log('🔥 Redirigiendo a index.html...');
-            // Usar replace para evitar problemas de historial
-            window.location.replace(window.location.origin + "/index.html");
+            console.log('Redirigiendo a home.html...');
+            window.location.href = "home.html";
         }, 4000);
         
     }, 300);
@@ -361,15 +352,15 @@ function createFireworks() {
 // Sonido de éxito (opcional)
 function playSuccessSound() {
     try {
-        const audio = new Audio('./sounds/success.mp3');
+        const audio = new Audio('sounds/success.mp3');
         audio.volume = 0.3;
         audio.play().catch(e => {
-            console.log('🔥 Audio no pudo reproducirse:', e);
+            console.log('Audio no pudo reproducirse:', e);
             // Fallback: usar sonido generado si el archivo no está disponible
             playFallbackSound();
         });
     } catch (e) {
-        console.log('🔥 Error al reproducir audio:', e);
+        console.log('Error al reproducir audio:', e);
         playFallbackSound();
     }
 }
@@ -399,7 +390,7 @@ function playFallbackSound() {
             }, index * 100);
         });
     } catch (e) {
-        console.log('🔥 Error al generar sonido:', e);
+        console.log('Error al generar sonido:', e);
     }
 }
 
@@ -436,9 +427,9 @@ function isValidEmail(email) {
 // Verificar si el usuario ya está logueado
 auth.onAuthStateChanged((user) => {
     if (user) {
-        console.log('🔥 Usuario ya autenticado:', user.email);
+        console.log('Usuario ya autenticado:', user.email);
         // Si el usuario ya está logueado, redirigir al dashboard
-        // window.location.href = 'index.html';
+        // window.location.href = 'home.html';
     }
 });
 
@@ -518,4 +509,4 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-console.log('🔥 VetInHouse Login System Loaded Successfully! 🔥');
+console.log('🐾 VetInHouse Login System Loaded Successfully! 🐾');
