@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda tu Cita - VetInHouse</title>
+    <title>Agendar Cita - VetInHouse</title>
     <link rel="stylesheet" href="cita.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
 </head>
 <body>
     <!-- Loader -->
@@ -19,278 +20,564 @@
         </div>
     </div>
 
-    <!-- Partículas animadas -->
-    <div class="particles-container" id="particles-js"></div>
+    <!-- Partículas de fondo -->
+    <div id="particles-js" class="particles-container"></div>
 
     <!-- Elementos flotantes -->
     <div class="floating-elements">
         <i class="fas fa-paw"></i>
-        <i class="fas fa-bone"></i>
         <i class="fas fa-heart"></i>
-        <i class="fas fa-syringe"></i>
-        <i class="fas fa-stethoscope"></i>
+        <i class="fas fa-bone"></i>
+        <i class="fas fa-cat"></i>
+        <i class="fas fa-dog"></i>
     </div>
 
-    <!-- Contenedor del video de fondo -->
-    <div class="video-container">
-        <video autoplay muted loop class="background-video">
-            <source src="https://cdn.pixabay.com/video/2023/06/22/168345-838892846_large.mp4" type="video/mp4">
-            Tu navegador no soporta el tag de video.
-        </video>
-        <div class="video-overlay"></div>
-    </div>
-
-    <!-- Header con logo -->
-    <header class="animate__animated animate__fadeInDown">
-        <div class="logo">
-            <i class="fas fa-clinic-medical"></i>
-            <span>VetInHouse</span>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-paw"></i>
+                <span>VetInHouse</span>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="home.html" class="nav-btn"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="consultacita.html" class="nav-btn"><i class="fas fa-calendar-check"></i> Consulta Cita</a></li>
+                    <li><a href="cita.html" class="nav-btn active"><i class="fas fa-calendar-alt"></i> Agendar Cita</a></li>
+                    <li><a href="petshop.html" class="nav-btn"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+                    <li><a href="paseador.html" class="nav-btn"><i class="fas fa-walking"></i> Paseadores</a></li>
+                    <li><a href="gps.html" class="nav-btn"><i class="fas fa-map-marker-alt"></i> GPS</a></li>
+                    <li><a href="#" class="nav-btn logout-btn" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="menuToggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
         </div>
     </header>
 
+    <!-- Navegación móvil -->
+    <nav class="mobile-nav" id="mobileNav">
+        <ul>
+            <li><a href="home.html"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="consultacita.html"><i class="fas fa-calendar-check"></i> Consulta Cita</a></li>
+            <li><a href="cita.html" class="active"><i class="fas fa-calendar-alt"></i> Agendar Cita</a></li>
+            <li><a href="petshop.html"><i class="fas fa-shopping-cart"></i> PetShop</a></li>
+            <li><a href="paseador.html"><i class="fas fa-walking"></i> Paseadores</a></li>
+            <li><a href="gps.html"><i class="fas fa-map-marker-alt"></i> GPS</a></li>
+            <li><a href="#" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
     <!-- Contenedor principal -->
-    <main class="main-container">
-        <!-- Contenedor del formulario -->
-        <div class="form-container animate__animated animate__fadeIn">
-            <h1 class="title">
-                <span class="title-icon"><i class="fas fa-calendar-plus"></i></span>
-                Agenda tu Cita Veterinaria
-            </h1>
-            
+    <div class="main-container">
+        <div class="form-container" data-aos="fade-up">
+            <!-- Título -->
+            <div class="title" data-aos="zoom-in">
+                <div class="title-icon">
+                    <i class="fas fa-calendar-plus"></i>
+                </div>
+                <h1>Agendar Cita Veterinaria</h1>
+            </div>
+
             <!-- Indicador de progreso -->
-            <div class="progress-container">
+            <div class="progress-container" data-aos="fade-up" data-aos-delay="100">
                 <div class="progress-bar">
                     <div class="progress" id="formProgress"></div>
                 </div>
                 <div class="progress-steps">
-                    <div class="step active" data-step="1">
-                        <div class="step-icon"><i class="fas fa-user"></i></div>
-                        <span>Dueño</span>
+                    <div class="step active">
+                        <div class="step-icon">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <span>Propietario</span>
                     </div>
-                    <div class="step" data-step="2">
-                        <div class="step-icon"><i class="fas fa-paw"></i></div>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-paw"></i>
+                        </div>
                         <span>Mascota</span>
                     </div>
-                    <div class="step" data-step="3">
-                        <div class="step-icon"><i class="fas fa-calendar-check"></i></div>
-                        <span>Cita</span>
+                    <div class="step">
+                        <div class="step-icon">
+                            <i class="fas fa-calendar"></i>
+                        </div>
+                        <span>Servicio</span>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Formulario -->
             <form id="citaForm">
-                <!-- Paso 1: Datos del Dueño -->
-                <div class="form-step active" id="step1">
-                    <h2 class="step-title">Datos del Dueño</h2>
+                <!-- Paso 1: Datos del Propietario -->
+                <div class="form-step active" id="step1" data-aos="fade-right">
+                    <h3 class="step-title">Datos del Propietario</h3>
                     
-                    <div class="input-group">
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="200">
                         <div class="input-icon">
                             <i class="fas fa-user"></i>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="nombreDueño" name="nombreDueño" required>
-                            <label for="nombreDueño">Nombre Completo</label>
+                            <input type="text" id="nombreDueño" placeholder=" " required>
+                            <label for="nombreDueño">Nombre completo</label>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
+
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="300">
                         <div class="input-icon">
                             <i class="fas fa-phone"></i>
                         </div>
                         <div class="input-container">
-                            <input type="tel" id="telefonoDueño" name="telefonoDueño" required>
+                            <input type="tel" id="telefonoDueño" placeholder=" " required>
                             <label for="telefonoDueño">Teléfono</label>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
+
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="400">
                         <div class="input-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <div class="input-container">
-                            <input type="email" id="emailDueño" name="emailDueño" required>
-                            <label for="emailDueño">Correo Electrónico</label>
+                            <input type="email" id="emailDueño" placeholder=" " required>
+                            <label for="emailDueño">Correo electrónico</label>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
+
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="500">
                         <div class="input-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="direccionDueño" name="direccionDueño" required>
-                            <label for="direccionDueño">Dirección</label>
+                            <input type="text" id="direccionDueño" placeholder=" " required>
+                            <label for="direccionDueño">Dirección completa</label>
                         </div>
                     </div>
-                    
-                    <div class="form-buttons">
-                        <button type="button" class="btn next-btn" id="toStep2">Siguiente <i class="fas fa-arrow-right"></i></button>
+
+                    <div class="form-buttons" data-aos="fade-up" data-aos-delay="600">
+                        <div></div>
+                        <button type="button" class="btn next-btn" id="toStep2">
+                            Siguiente
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
-                
+
                 <!-- Paso 2: Datos de la Mascota -->
-                <div class="form-step" id="step2">
-                    <h2 class="step-title">Datos de la Mascota</h2>
+                <div class="form-step" id="step2" data-aos="fade-left">
+                    <h3 class="step-title">Datos de la Mascota</h3>
                     
-                    <div class="input-group">
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="200">
                         <div class="input-icon">
                             <i class="fas fa-paw"></i>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="nombreMascota" name="nombreMascota" required>
-                            <label for="nombreMascota">Nombre de la Mascota</label>
+                            <input type="text" id="nombreMascota" placeholder=" " required>
+                            <label for="nombreMascota">Nombre de la mascota</label>
                         </div>
                     </div>
-                    
-                    <div class="select-group">
+
+                    <div class="select-group" data-aos="fade-up" data-aos-delay="300">
                         <div class="input-icon">
-                            <i class="fas fa-dog"></i>
+                            <i class="fas fa-cat"></i>
                         </div>
                         <div class="select-container">
-                            <select id="tipoMascota" name="tipoMascota" required>
-                                <option value="" disabled selected>Selecciona el tipo</option>
-                                <option value="Perro">Perro</option>
-                                <option value="Gato">Gato</option>
-                                <option value="Ave">Ave</option>
-                                <option value="Roedor">Roedor</option>
-                                <option value="Reptil">Reptil</option>
-                                <option value="Otro">Otro</option>
+                            <select id="tipoMascota" required>
+                                <option value="">Seleccionar</option>
+                                <option value="perro">Perro</option>
+                                <option value="gato">Gato</option>
+                                <option value="ave">Ave</option>
+                                <option value="roedor">Roedor</option>
+                                <option value="reptil">Reptil</option>
+                                <option value="otro">Otro</option>
                             </select>
-                            <label for="tipoMascota">Tipo de Mascota</label>
+                            <label for="tipoMascota">Tipo de mascota</label>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
+
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="400">
                         <div class="input-icon">
-                            <i class="fas fa-tag"></i>
+                            <i class="fas fa-dna"></i>
                         </div>
                         <div class="input-container">
-                            <input type="text" id="razaMascota" name="razaMascota" required>
+                            <input type="text" id="razaMascota" placeholder=" " required>
                             <label for="razaMascota">Raza</label>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
+
+                    <div class="input-group" data-aos="fade-up" data-aos-delay="500">
                         <div class="input-icon">
                             <i class="fas fa-birthday-cake"></i>
                         </div>
                         <div class="input-container">
-                            <input type="number" id="edadMascota" name="edadMascota" min="1" required>
-                            <label for="edadMascota">Edad en Meses</label>
+                            <input type="number" id="edadMascota" min="1" max="300" placeholder=" " required>
+                            <label for="edadMascota">Edad (meses)</label>
                         </div>
                     </div>
-                    
-                    <div class="radio-group">
+
+                    <div class="radio-group" data-aos="fade-up" data-aos-delay="600">
                         <label class="radio-label">Género:</label>
                         <div class="radio-options">
                             <div class="radio-option">
-                                <input type="radio" id="generoMacho" name="generoMascota" value="Macho" required>
-                                <label for="generoMacho">Macho</label>
+                                <input type="radio" id="macho" name="generoMascota" value="macho" required>
+                                <label for="macho">Macho</label>
                             </div>
                             <div class="radio-option">
-                                <input type="radio" id="generoHembra" name="generoMascota" value="Hembra">
-                                <label for="generoHembra">Hembra</label>
+                                <input type="radio" id="hembra" name="generoMascota" value="hembra" required>
+                                <label for="hembra">Hembra</label>
                             </div>
                         </div>
                     </div>
-                    
-                    <div class="form-buttons">
-                        <button type="button" class="btn back-btn" id="backToStep1"><i class="fas fa-arrow-left"></i> Atrás</button>
-                        <button type="button" class="btn next-btn" id="toStep3">Siguiente <i class="fas fa-arrow-right"></i></button>
+
+                    <div class="form-buttons" data-aos="fade-up" data-aos-delay="700">
+                        <button type="button" class="btn back-btn" id="backToStep1">
+                            <i class="fas fa-arrow-left"></i>
+                            Anterior
+                        </button>
+                        <button type="button" class="btn next-btn" id="toStep3">
+                            Siguiente
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
                     </div>
                 </div>
-                
-                <!-- Paso 3: Detalles de la Cita -->
-                <div class="form-step" id="step3">
-                    <h2 class="step-title">Detalles de la Cita</h2>
+
+                <!-- Paso 3: Servicio y Fecha -->
+                <div class="form-step" id="step3" data-aos="fade-up">
+                    <h3 class="step-title">Selecciona el Servicio</h3>
                     
-                    <div class="select-group">
-                        <div class="input-icon">
+                    <input type="hidden" id="tipoServicio" name="tipoServicio">
+
+                    <!-- Servicios Médicos -->
+                    <div class="service-category" data-aos="fade-up" data-aos-delay="200">
+                        <div class="category-title">
                             <i class="fas fa-stethoscope"></i>
+                            Servicios Médicos
                         </div>
-                        <div class="select-container">
-                            <select id="tipoServicio" name="tipoServicio" required>
-                                <option value="" disabled selected>Selecciona el servicio</option>
-                                <option value="Consulta General">Consulta General</option>
-                                <option value="Vacunación">Vacunación</option>
-                                <option value="Desparasitación">Desparasitación</option>
-                                <option value="Limpieza Dental">Limpieza Dental</option>
-                                <option value="Peluquería">Peluquería</option>
-                                <option value="Emergencia">Emergencia</option>
-                            </select>
-                            <label for="tipoServicio">Tipo de Servicio</label>
+                        <div class="services-grid">
+                            <div class="service-card medical" data-service="consulta-general" data-aos="zoom-in" data-aos-delay="300">
+                                <div class="service-icon">
+                                    <i class="fas fa-stethoscope"></i>
+                                </div>
+                                <h4>Consulta General</h4>
+                                <p>Examen médico completo y diagnóstico profesional</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        45 min
+                                    </div>
+                                    <div class="price">$80.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card medical" data-service="consulta-especialista" data-aos="zoom-in" data-aos-delay="400">
+                                <div class="service-icon">
+                                    <i class="fas fa-user-md"></i>
+                                </div>
+                                <h4>Consulta Especialista</h4>
+                                <p>Consulta con veterinario especialista</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        60 min
+                                    </div>
+                                    <div class="price">$120.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card medical" data-service="urgencias" data-aos="zoom-in" data-aos-delay="500">
+                                <div class="service-icon emergency">
+                                    <i class="fas fa-ambulance"></i>
+                                </div>
+                                <h4>Urgencias</h4>
+                                <p>Atención médica urgente las 24 horas</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        Variable
+                                    </div>
+                                    <div class="price">$150.000</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
+
+                    <!-- Servicios Preventivos -->
+                    <div class="service-category" data-aos="fade-up" data-aos-delay="600">
+                        <div class="category-title">
+                            <i class="fas fa-shield-alt"></i>
+                            Servicios Preventivos
+                        </div>
+                        <div class="services-grid">
+                            <div class="service-card preventive" data-service="vacunacion" data-aos="zoom-in" data-aos-delay="700">
+                                <div class="service-icon">
+                                    <i class="fas fa-syringe"></i>
+                                </div>
+                                <h4>Vacunación</h4>
+                                <p>Plan completo de vacunación según edad</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        30 min
+                                    </div>
+                                    <div class="price">$45.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card preventive" data-service="desparasitacion" data-aos="zoom-in" data-aos-delay="800">
+                                <div class="service-icon">
+                                    <i class="fas fa-bug"></i>
+                                </div>
+                                <h4>Desparasitación</h4>
+                                <p>Tratamiento antiparasitario interno y externo</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        20 min
+                                    </div>
+                                    <div class="price">$35.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card preventive" data-service="chequeo-preventivo" data-aos="zoom-in" data-aos-delay="900">
+                                <div class="service-icon">
+                                    <i class="fas fa-heartbeat"></i>
+                                </div>
+                                <h4>Chequeo Preventivo</h4>
+                                <p>Examen completo de salud preventivo</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        40 min
+                                    </div>
+                                    <div class="price">$60.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Servicios de Bienestar -->
+                    <div class="service-category" data-aos="fade-up" data-aos-delay="1000">
+                        <div class="category-title">
+                            <i class="fas fa-spa"></i>
+                            Servicios de Bienestar
+                        </div>
+                        <div class="services-grid">
+                            <div class="service-card wellness" data-service="peluqueria-basica" data-aos="zoom-in" data-aos-delay="1100">
+                                <div class="service-icon">
+                                    <i class="fas fa-cut"></i>
+                                </div>
+                                <h4>Peluquería Básica</h4>
+                                <p>Baño, corte de uñas y limpieza de oídos</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        90 min
+                                    </div>
+                                    <div class="price">$50.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card wellness" data-service="peluqueria-completa" data-aos="zoom-in" data-aos-delay="1200">
+                                <div class="service-icon">
+                                    <i class="fas fa-magic"></i>
+                                </div>
+                                <h4>Peluquería Completa</h4>
+                                <p>Baño, corte, peinado y aromaterapia</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        120 min
+                                    </div>
+                                    <div class="price">$80.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card wellness" data-service="limpieza-dental" data-aos="zoom-in" data-aos-delay="1300">
+                                <div class="service-icon">
+                                    <i class="fas fa-tooth"></i>
+                                </div>
+                                <h4>Limpieza Dental</h4>
+                                <p>Profilaxis dental profesional</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        60 min
+                                    </div>
+                                    <div class="price">$90.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Servicios de Paseo -->
+                    <div class="service-category" data-aos="fade-up" data-aos-delay="1400">
+                        <div class="category-title">
+                            <i class="fas fa-walking"></i>
+                            Servicios de Paseo
+                        </div>
+                        <div class="services-grid">
+                            <div class="service-card walking" data-service="paseo-recreativo" data-aos="zoom-in" data-aos-delay="1500">
+                                <div class="service-icon">
+                                    <i class="fas fa-walking"></i>
+                                </div>
+                                <h4>Paseo Recreativo</h4>
+                                <p>Paseo recreativo en zona segura</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        30-60 min
+                                    </div>
+                                    <div class="price">$25.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card walking" data-service="paseo-ejercicio" data-aos="zoom-in" data-aos-delay="1600">
+                                <div class="service-icon">
+                                    <i class="fas fa-running"></i>
+                                </div>
+                                <h4>Paseo con Ejercicio</h4>
+                                <p>Actividad física dirigida y juegos</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        60-90 min
+                                    </div>
+                                    <div class="price">$40.000</div>
+                                </div>
+                            </div>
+
+                            <div class="service-card walking" data-service="paseo-premium" data-aos="zoom-in" data-aos-delay="1700">
+                                <div class="service-icon">
+                                    <i class="fas fa-crown"></i>
+                                </div>
+                                <h4>Paseo Premium</h4>
+                                <p>Experiencia personalizada con fotos y reporte</p>
+                                <div class="service-details">
+                                    <div class="duration">
+                                        <i class="fas fa-clock"></i>
+                                        90-120 min
+                                    </div>
+                                    <div class="price">$60.000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detalles del paseo -->
+                    <div class="paseo-details" id="paseoDetails" style="display: none;" data-aos="fade-up">
+                        <div class="details-title">
+                            <i class="fas fa-info-circle"></i>
+                            Detalles del Paseo
+                        </div>
+                        
+                        <div class="select-group">
+                            <div class="input-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="select-container">
+                                <select id="duracionPaseo">
+                                    <option value="">Seleccionar duración</option>
+                                    <option value="30">30 minutos</option>
+                                    <option value="60">1 hora</option>
+                                    <option value="90">1.5 horas</option>
+                                    <option value="120">2 horas</option>
+                                </select>
+                                <label for="duracionPaseo">Duración del paseo</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="input-container">
+                                <input type="text" id="zonaPaseo" placeholder=" ">
+                                <label for="zonaPaseo">Zona preferida para el paseo</label>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="serviciosExtra">
+                            <label for="serviciosExtra">Incluir servicios extra (hidratación, snacks)</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="transporteIncluido">
+                            <label for="transporteIncluido">Incluir transporte de ida y vuelta</label>
+                        </div>
+                    </div>
+
+                    <!-- Fecha y hora -->
+                    <div class="datetime-container" data-aos="fade-up" data-aos-delay="1800">
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-calendar"></i>
+                            </div>
+                            <div class="input-container">
+                                <input type="date" id="fechaCita" required>
+                                <label for="fechaCita" class="date-label">Fecha de la cita</label>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <div class="input-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="input-container">
+                                <input type="time" id="horaCita" required>
+                                <label for="horaCita" class="time-label">Hora de la cita</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Motivo de la cita -->
+                    <div class="textarea-group" data-aos="fade-up" data-aos-delay="1900">
                         <div class="input-icon">
-                            <i class="fas fa-calendar-alt"></i>
+                            <i class="fas fa-comment"></i>
                         </div>
                         <div class="input-container">
-                            <input type="date" id="fechaCita" name="fechaCita" required>
-                            <label for="fechaCita" class="date-label">Fecha Preferida</label>
+                            <textarea id="motivoCita" placeholder=" "></textarea>
+                            <label for="motivoCita">Motivo de la cita o comentarios adicionales</label>
                         </div>
                     </div>
-                    
-                    <div class="input-group">
-                        <div class="input-icon">
-                            <i class="fas fa-clock"></i>
-                        </div>
-                        <div class="input-container">
-                            <input type="time" id="horaCita" name="horaCita" required>
-                            <label for="horaCita" class="time-label">Hora Preferida</label>
-                        </div>
-                    </div>
-                    
-                    <div class="input-group textarea-group">
-                        <div class="input-icon">
-                            <i class="fas fa-comment-medical"></i>
-                        </div>
-                        <div class="input-container">
-                            <textarea id="sintomasMascota" name="sintomasMascota" required></textarea>
-                            <label for="sintomasMascota">Síntomas o Motivo de la Cita</label>
-                        </div>
-                    </div>
-                    
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="terminos" name="terminos" required>
+
+                    <!-- Términos y condiciones -->
+                    <div class="checkbox-group" data-aos="fade-up" data-aos-delay="2000">
+                        <input type="checkbox" id="terminos" required>
                         <label for="terminos">Acepto los términos y condiciones del servicio</label>
                     </div>
-                    
-                    <div class="form-buttons">
-                        <button type="button" class="btn back-btn" id="backToStep2"><i class="fas fa-arrow-left"></i> Atrás</button>
+
+                    <div class="form-buttons" data-aos="fade-up" data-aos-delay="2100">
+                        <button type="button" class="btn back-btn" id="backToStep2">
+                            <i class="fas fa-arrow-left"></i>
+                            Anterior
+                        </button>
                         <button type="submit" class="btn submit-btn">
-                            <span>Agendar Cita</span>
-                            <i class="fas fa-check"></i>
+                            <i class="fas fa-calendar-check"></i>
+                            Agendar Cita
                         </button>
                     </div>
                 </div>
             </form>
-            
-            <div class="form-footer">
+
+            <!-- Footer del formulario -->
+            <div class="form-footer" data-aos="fade-up" data-aos-delay="2200">
                 <a href="home.html" class="volver-btn">
                     <i class="fas fa-home"></i>
-                    <span>Volver al Inicio</span>
+                    Volver al Inicio
                 </a>
             </div>
         </div>
-    </main>
-
-    <!-- Notificación de éxito -->
-    <div class="notification" id="successNotification">
-        <div class="notification-icon">
-            <i class="fas fa-check-circle"></i>
-        </div>
-        <div class="notification-content">
-            <h3>¡Cita Agendada!</h3>
-            <p>Tu cita ha sido registrada exitosamente.</p>
-        </div>
-        <div class="notification-progress">
-            <div class="notification-progress-bar"></div>
-        </div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- Botón de volver arriba -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script type="module" src="firebase-config.js"></script>
     <script type="module" src="cita.js"></script>
 </body>
