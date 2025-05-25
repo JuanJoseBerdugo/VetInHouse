@@ -1,5 +1,6 @@
-import { auth } from "./firebase-config.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+// Importar funciones de Firebase
+import { auth } from './firebase-config.js';
+import { signInWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
 
 // Configuración de partículas
 particlesJS('particles-js', {
@@ -15,15 +16,31 @@ particlesJS('particles-js', {
             value: '#4CAF50'
         },
         shape: {
-            type: 'circle'
+            type: 'circle',
+            stroke: {
+                width: 0,
+                color: '#000000'
+            }
         },
         opacity: {
             value: 0.5,
-            random: false
+            random: false,
+            anim: {
+                enable: false,
+                speed: 1,
+                opacity_min: 0.1,
+                sync: false
+            }
         },
         size: {
             value: 3,
-            random: true
+            random: true,
+            anim: {
+                enable: false,
+                speed: 40,
+                size_min: 0.1,
+                sync: false
+            }
         },
         line_linked: {
             enable: true,
@@ -39,7 +56,12 @@ particlesJS('particles-js', {
             random: false,
             straight: false,
             out_mode: 'out',
-            bounce: false
+            bounce: false,
+            attract: {
+                enable: false,
+                rotateX: 600,
+                rotateY: 1200
+            }
         }
     },
     interactivity: {
@@ -54,6 +76,31 @@ particlesJS('particles-js', {
                 mode: 'push'
             },
             resize: true
+        },
+        modes: {
+            grab: {
+                distance: 400,
+                line_linked: {
+                    opacity: 1
+                }
+            },
+            bubble: {
+                distance: 400,
+                size: 40,
+                duration: 2,
+                opacity: 8,
+                speed: 3
+            },
+            repulse: {
+                distance: 200,
+                duration: 0.4
+            },
+            push: {
+                particles_nb: 4
+            },
+            remove: {
+                particles_nb: 2
+            }
         }
     },
     retina_detect: true
@@ -62,66 +109,125 @@ particlesJS('particles-js', {
 // Variables globales
 let successAnimationActive = false;
 
-// Lógica para iniciar sesión
-document.getElementById("loginBtn").addEventListener("click", async function () {
-    const email = document.getElementById("loginEmail").value;
-    const password = document.getElementById("loginPassword").value;
-    const loginMessage = document.getElementById("loginMessage");
-    const loginBtn = document.getElementById("loginBtn");
+// Funcionalidad de mostrar/ocultar contraseña
+document.addEventListener('DOMContentLoaded', function() {
+    const togglePassword = document.querySelector('.toggle-password');
+    const passwordInput = document.getElementById('loginPassword');
+    
+    if (togglePassword && passwordInput) {
+        togglePassword.addEventListener('click', function() {
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            
+            // Cambiar el ícono
+            this.classList.toggle('fa-eye');
+            this.classList.toggle('fa-eye-slash');
+        });
+    }
+    
+    // Efectos de focus en los inputs
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('focus', function() {
+            this.parentElement.classList.add('focused');
+        });
+        
+        input.addEventListener('blur', function() {
+            if (this.value === '') {
+                this.parentElement.classList.remove('focused');
+            }
+        });
+    });
+    
+    // Manejo del formulario de login
+    const loginBtn = document.getElementById('loginBtn');
+    
+    if (loginBtn) {
+        loginBtn.addEventListener('click', handleLogin);
+    }
+    
+    // Permitir login con Enter
+    document.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            handleLogin();
+        }
+    });
+});
 
+// Función para manejar el login
+async function handleLogin() {
+    console.log('Iniciando proceso de login...');
+    
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+    const loginMessage = document.getElementById('loginMessage');
+    const loginBtn = document.getElementById('loginBtn');
+    
+    // Validaciones básicas
     if (!email || !password) {
-        showMessage("Por favor, ingresa tu correo y contraseña.", "error");
+        showMessage('Por favor, completa todos los campos', 'error');
         return;
     }
-
+    
     if (!isValidEmail(email)) {
-        showMessage("Por favor, ingresa un correo electrónico válido.", "error");
+        showMessage('Por favor, ingresa un correo electrónico válido', 'error');
         return;
     }
-
+    
     // Deshabilitar botón durante el proceso
     loginBtn.disabled = true;
     loginBtn.innerHTML = '<span>Iniciando sesión...</span><i class="fas fa-spinner fa-spin"></i>';
-
+    
     try {
+        console.log('Intentando autenticar con Firebase...');
         const userCredential = await signInWithEmailAndPassword(auth, email, password);
-        showMessage("Inicio de sesión exitoso.", "success");
+        const user = userCredential.user;
         
-        // Guardar información del usuario
-        localStorage.setItem('userEmail', userCredential.user.email);
-        localStorage.setItem('userId', userCredential.user.uid);
+        console.log('Login exitoso:', user.email);
+        showMessage('¡Inicio de sesión exitoso!', 'success');
         
-        // Activar animación de éxito épica
+        // Guardar información del usuario en localStorage
+        localStorage.setItem('userEmail', user.email);
+        localStorage.setItem('userId', user.uid);
+        
+        // Activar animación de éxito después de un breve delay
         setTimeout(() => {
+            console.log('Activando animación de éxito...');
             activateSuccessAnimation();
-        }, 500);
+        }, 1000);
         
     } catch (error) {
         console.error('Error en el login:', error);
         
-        let errorMessage = "Error al iniciar sesión";
+        let errorMessage = 'Error al iniciar sesión';
         
         switch (error.code) {
             case 'auth/user-not-found':
-                errorMessage = "No existe una cuenta con este correo electrónico";
+                errorMessage = 'No existe una cuenta con este correo electrónico';
                 break;
             case 'auth/wrong-password':
-                errorMessage = "Contraseña incorrecta";
+                errorMessage = 'Contraseña incorrecta';
                 break;
             case 'auth/invalid-email':
-                errorMessage = "Correo electrónico inválido";
+                errorMessage = 'Correo electrónico inválido';
                 break;
             case 'auth/user-disabled':
-                errorMessage = "Esta cuenta ha sido deshabilitada";
+                errorMessage = 'Esta cuenta ha sido deshabilitada';
                 break;
             case 'auth/too-many-requests':
-                errorMessage = "Demasiados intentos fallidos. Intenta más tarde";
+                errorMessage = 'Demasiados intentos fallidos. Intenta más tarde';
+                break;
+            case 'auth/network-request-failed':
+                errorMessage = 'Error de conexión. Verifica tu internet';
+                break;
+            case 'auth/invalid-credential':
+                errorMessage = 'Credenciales inválidas. Verifica tu email y contraseña';
                 break;
             default:
-                errorMessage = "Error inesperado. Intenta nuevamente";
+                errorMessage = 'Error inesperado. Intenta nuevamente';
         }
         
-        showMessage(errorMessage, "error");
+        showMessage(errorMessage, 'error');
         
         // Efecto de shake en error
         const loginContainer = document.getElementById('loginContainer');
@@ -135,15 +241,24 @@ document.getElementById("loginBtn").addEventListener("click", async function () 
         loginBtn.disabled = false;
         loginBtn.innerHTML = '<span>Ingresar</span><i class="fas fa-paw"></i>';
     }
-});
+}
 
 // FUNCIÓN DE ANIMACIÓN DE ÉXITO ÉPICA
 function activateSuccessAnimation() {
+    console.log('Ejecutando animación de éxito...');
+    
     if (successAnimationActive) return;
     successAnimationActive = true;
     
     const successAnimation = document.getElementById('successAnimation');
     const loginContainer = document.getElementById('loginContainer');
+    
+    if (!successAnimation) {
+        console.error('No se encontró el elemento successAnimation');
+        // Redirigir directamente si no hay animación
+        window.location.href = "home.html";
+        return;
+    }
     
     // Ocultar el formulario de login con animación
     loginContainer.style.transform = 'translate(-50%, -50%) scale(0.8)';
@@ -152,6 +267,7 @@ function activateSuccessAnimation() {
     setTimeout(() => {
         // Mostrar animación de éxito
         successAnimation.classList.add('show');
+        console.log('Animación de éxito activada');
         
         // Crear confetti
         createConfetti();
@@ -159,11 +275,12 @@ function activateSuccessAnimation() {
         // Crear fuegos artificiales
         createFireworks();
         
-        // Sonido de éxito (opcional)
+        // Sonido de éxito
         playSuccessSound();
         
         // Redirigir después de la animación
         setTimeout(() => {
+            console.log('Redirigiendo a home.html...');
             window.location.href = "home.html";
         }, 4000);
         
@@ -173,6 +290,8 @@ function activateSuccessAnimation() {
 // Crear efecto confetti
 function createConfetti() {
     const confettiContainer = document.getElementById('confettiContainer');
+    if (!confettiContainer) return;
+    
     const colors = ['#4CAF50', '#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA726'];
     
     for (let i = 0; i < 100; i++) {
@@ -196,6 +315,8 @@ function createConfetti() {
 // Crear fuegos artificiales
 function createFireworks() {
     const fireworksContainer = document.getElementById('fireworksContainer');
+    if (!fireworksContainer) return;
+    
     const colors = ['#4CAF50', '#FFD700', '#FF6B6B', '#4ECDC4', '#45B7D1'];
     
     for (let i = 0; i < 5; i++) {
@@ -230,39 +351,56 @@ function createFireworks() {
 
 // Sonido de éxito (opcional)
 function playSuccessSound() {
-    // Usar un archivo de audio real (más recomendado)
-    const audio = new Audio('sounds/success.mp3'); // Coloca tu archivo en carpeta sounds/
-    audio.volume = 0.3;
-    audio.play().catch(e => console.log('Audio no pudo reproducirse:', e));
+    try {
+        const audio = new Audio('sounds/success.mp3');
+        audio.volume = 0.3;
+        audio.play().catch(e => {
+            console.log('Audio no pudo reproducirse:', e);
+            // Fallback: usar sonido generado si el archivo no está disponible
+            playFallbackSound();
+        });
+    } catch (e) {
+        console.log('Error al reproducir audio:', e);
+        playFallbackSound();
+    }
 }
 
-
-
-// Lógica para mostrar/ocultar la contraseña
-const passwordInput = document.getElementById("loginPassword");
-const togglePasswordIcon = document.querySelector(".toggle-password");
-
-if (togglePasswordIcon && passwordInput) {
-    togglePasswordIcon.addEventListener("click", () => {
-        if (passwordInput.type === "password") {
-            passwordInput.type = "text";
-            togglePasswordIcon.classList.remove("fa-eye-slash");
-            togglePasswordIcon.classList.add("fa-eye");
-        } else {
-            passwordInput.type = "password";
-            togglePasswordIcon.classList.remove("fa-eye");
-            togglePasswordIcon.classList.add("fa-eye-slash");
-        }
-    });
+// Función de respaldo por si el archivo no carga
+function playFallbackSound() {
+    try {
+        const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const frequencies = [800, 1000, 1200];
+        
+        frequencies.forEach((freq, index) => {
+            setTimeout(() => {
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(freq, audioContext.currentTime);
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.15, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.001, audioContext.currentTime + 0.8);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.8);
+            }, index * 100);
+        });
+    } catch (e) {
+        console.log('Error al generar sonido:', e);
+    }
 }
 
 // Función para mostrar mensajes
 function showMessage(message, type) {
-    const loginMessage = document.getElementById("loginMessage");
+    const loginMessage = document.getElementById('loginMessage');
     if (loginMessage) {
         loginMessage.textContent = message;
         loginMessage.className = type;
-        loginMessage.style.display = "block";
+        loginMessage.style.display = 'block';
         
         // Animación de entrada
         loginMessage.style.transform = 'translateY(-10px)';
@@ -273,8 +411,9 @@ function showMessage(message, type) {
             loginMessage.style.opacity = '1';
         }, 100);
         
+        // Ocultar mensaje después de 5 segundos
         setTimeout(() => {
-            loginMessage.style.display = "none";
+            loginMessage.style.display = 'none';
         }, 5000);
     }
 }
@@ -285,34 +424,36 @@ function isValidEmail(email) {
     return emailRegex.test(email);
 }
 
-// Permitir login con Enter
-document.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter' && !successAnimationActive) {
-        document.getElementById("loginBtn").click();
+// Verificar si el usuario ya está logueado
+auth.onAuthStateChanged((user) => {
+    if (user) {
+        console.log('Usuario ya autenticado:', user.email);
+        // Si el usuario ya está logueado, redirigir al dashboard
+        // window.location.href = 'home.html';
     }
 });
 
-// Efectos de focus en los inputs
+// Efectos adicionales
 document.addEventListener('DOMContentLoaded', function() {
-    const inputs = document.querySelectorAll('input');
-    inputs.forEach(input => {
-        input.addEventListener('focus', function() {
-            this.parentElement.classList.add('focused');
-        });
+    // Efecto de escritura en el título
+    const title = document.querySelector('h2');
+    if (title) {
+        const text = title.textContent;
+        title.textContent = '';
+        let i = 0;
         
-        input.addEventListener('blur', function() {
-            if (this.value === '') {
-                this.parentElement.classList.remove('focused');
+        const typeWriter = () => {
+            if (i < text.length) {
+                title.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
             }
-        });
+        };
         
-        // Efecto de escritura
-        input.addEventListener('input', function() {
-            createTypingEffect(this);
-        });
-    });
+        setTimeout(typeWriter, 1000);
+    }
     
-    // Efecto ripple en el botón
+    // Efecto de ondas en el botón
     const button = document.querySelector('button');
     if (button) {
         button.addEventListener('click', function(e) {
@@ -336,63 +477,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Efecto de escritura en inputs
-function createTypingEffect(input) {
-    const rect = input.getBoundingClientRect();
-    const spark = document.createElement('div');
-    spark.style.position = 'absolute';
-    spark.style.width = '4px';
-    spark.style.height = '4px';
-    spark.style.background = '#4CAF50';
-    spark.style.borderRadius = '50%';
-    spark.style.left = (rect.left + rect.width - 20) + 'px';
-    spark.style.top = (rect.top + rect.height / 2) + 'px';
-    spark.style.pointerEvents = 'none';
-    spark.style.zIndex = '10001';
-    spark.style.boxShadow = '0 0 10px #4CAF50';
+// CSS para el efecto ripple
+const style = document.createElement('style');
+style.textContent = `
+    button {
+        position: relative;
+        overflow: hidden;
+    }
     
-    document.body.appendChild(spark);
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        pointer-events: none;
+    }
     
-    setTimeout(() => {
-        spark.remove();
-    }, 300);
-}
-
-// Animación de shake para errores
-const shakeKeyframes = `
-@keyframes shake {
-    0%, 100% { transform: translate(-50%, -50%) translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translate(-50%, -50%) translateX(5px); }
-}`;
-
-const styleSheet = document.createElement('style');
-styleSheet.textContent = shakeKeyframes;
-document.head.appendChild(styleSheet);
-
-// Efecto de hover mejorado en inputs
-document.addEventListener('DOMContentLoaded', function() {
-    const inputs = document.querySelectorAll('.input-group input');
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
     
-    inputs.forEach(input => {
-        input.addEventListener('mouseenter', function() {
-            this.style.transform = 'scale(1.02)';
-        });
-        
-        input.addEventListener('mouseleave', function() {
-            if (document.activeElement !== this) {
-                this.style.transform = 'scale(1)';
-            }
-        });
-        
-        input.addEventListener('focus', function() {
-            this.style.transform = 'scale(1.02)';
-        });
-        
-        input.addEventListener('blur', function() {
-            this.style.transform = 'scale(1)';
-        });
-    });
-});
+    @keyframes shake {
+        0%, 100% { transform: translate(-50%, -50%) translateX(0); }
+        10%, 30%, 50%, 70%, 90% { transform: translate(-50%, -50%) translateX(-5px); }
+        20%, 40%, 60%, 80% { transform: translate(-50%, -50%) translateX(5px); }
+    }
+`;
+document.head.appendChild(style);
 
 console.log('🐾 VetInHouse Login System Loaded Successfully! 🐾');

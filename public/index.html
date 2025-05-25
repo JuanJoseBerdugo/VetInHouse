@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body class="login-page">
     <!-- Partículas de fondo -->
@@ -29,7 +30,7 @@
     </div>
 
     <!-- Contenedor del login -->
-    <div class="login-container animate__animated animate__fadeIn">
+    <div class="login-container animate__animated animate__fadeIn" id="loginContainer">
         <div class="logo-container">
             <i class="fas fa-clinic-medical logo-icon"></i>
             <h1>VetInHouse</h1>
@@ -62,10 +63,53 @@
         <p id="loginMessage"></p>
         
         <div class="additional-links animate__animated animate__fadeIn animate__delay-2s">
-            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
-            <p>¿No tienes cuenta? <a href="register.html" class="register-link">Regístrate aquí</a></p>
+            <div class="forgot-password-container">
+                <a href="forgot-password.html" class="forgot-password">
+                    <i class="fas fa-key"></i>
+                    ¿Olvidaste tu contraseña?
+                </a>
+            </div>
+            
+            <div class="register-container">
+                <span class="register-text">¿No tienes cuenta?</span>
+                <a href="register.html" class="register-link">
+                    <i class="fas fa-user-plus"></i>
+                    Regístrate aquí
+                </a>
+            </div>
         </div>
     </div>
+
+    <!-- Animación de éxito -->
+    <div class="success-animation" id="successAnimation">
+        <div class="success-content">
+            <div class="checkmark-container">
+                <div class="checkmark">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="success-rings">
+                    <div class="ring ring-1"></div>
+                    <div class="ring ring-2"></div>
+                    <div class="ring ring-3"></div>
+                </div>
+            </div>
+            <h2 class="success-title">¡Bienvenido de vuelta!</h2>
+            <p class="success-subtitle">Acceso concedido exitosamente</p>
+            <div class="success-paws">
+                <i class="fas fa-paw"></i>
+                <i class="fas fa-paw"></i>
+                <i class="fas fa-paw"></i>
+            </div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <p class="loading-text">Redirigiendo al dashboard...</p>
+        </div>
+    </div>
+
+    <!-- Confetti y efectos especiales -->
+    <div class="confetti-container" id="confettiContainer"></div>
+    <div class="fireworks-container" id="fireworksContainer"></div>
 
     <!-- Burbujas flotantes -->
     <div class="bubbles">

@@ -42,7 +42,7 @@
             <div class="input-icon">
                 <i class="fas fa-envelope"></i>
             </div>
-            <input type="email" id="loginEmail" placeholder="Correo Electrónico">
+            <input type="email" id="loginEmail" placeholder="Correo Electrónico" required>
             <span class="input-focus-border"></span>
         </div>
 
@@ -50,7 +50,7 @@
             <div class="input-icon">
                 <i class="fas fa-lock"></i>
             </div>
-            <input type="password" id="loginPassword" placeholder="Contraseña">
+            <input type="password" id="loginPassword" placeholder="Contraseña" required>
             <span class="input-focus-border"></span>
             <i class="fas fa-eye-slash toggle-password"></i>
         </div>
@@ -63,14 +63,11 @@
         <p id="loginMessage"></p>
         
         <div class="additional-links animate__animated animate__fadeIn animate__delay-2s">
-            <div class="forgot-password-container">
-                <a href="forgot-password.html" class="forgot-password">
-                    <i class="fas fa-key"></i>
-                    ¿Olvidaste tu contraseña?
-                </a>
-            </div>
-            
-            <div class="register-container">
+            <a href="forgot-password.html" class="forgot-password">
+                <i class="fas fa-key"></i>
+                ¿Olvidaste tu contraseña?
+            </a>
+            <div class="register-section">
                 <span class="register-text">¿No tienes cuenta?</span>
                 <a href="register.html" class="register-link">
                     <i class="fas fa-user-plus"></i>
