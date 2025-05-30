@@ -1,7 +1,6 @@
 {
   "name": "vetinhouse-main",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"
@@ -11,5 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.2"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VetInHouse/VetInHouse.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VetInHouse/VetInHouse/issues"
+  },
+  "homepage": "https://github.com/VetInHouse/VetInHouse#readme",
+  "description": ""
 }
